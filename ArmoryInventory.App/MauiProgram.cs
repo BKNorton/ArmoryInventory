@@ -1,7 +1,8 @@
-﻿using ArmoryInventory.App.Interfaces;
-using ArmoryInventory.App.Repositories;
-using ArmoryInventory.App.ViewModels;
+﻿using ArmoryInventory.App.ViewModels;
 using ArmoryInventory.App.Views;
+using ArmoryInventory.Data;
+using ArmoryInventory.Data.Interfaces;
+using ArmoryInventory.Data.Repositories;
 using Microsoft.Extensions.Logging;
 
 namespace ArmoryInventory.App
@@ -22,7 +23,10 @@ namespace ArmoryInventory.App
             //Dependency Injections//
 
             //Repository
-            builder.Services.AddSingleton<IRepository, InMemoryRepository>();
+            builder.Services.AddSingleton<IRepository, SQLiteRepository>();
+
+            //Dbcontext
+            builder.Services.AddDbContext<ArmoryInventoryDbContext>();
 
             //Pages
             builder.Services.AddTransient<MainPage>();
