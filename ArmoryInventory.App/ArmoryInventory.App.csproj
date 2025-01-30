@@ -64,6 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\ArmoryInventory.Data\ArmoryInventory.Data.csproj" />
 	  <ProjectReference Include="..\ArmoryInventory.Domain\ArmoryInventory.Domain.csproj" />
 	</ItemGroup>
 

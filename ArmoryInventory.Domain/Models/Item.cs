@@ -13,5 +13,6 @@ namespace ArmoryInventory.Domain.Models
         public TrueOrFalse CheckedOut { get; set; }
         public List<string>? Defects { get; set; }
         public List<string>? MissingComponents { get; set; }
+        public List<Checkout>? CheckoutHistory { get; set; }
     }
 }

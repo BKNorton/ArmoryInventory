@@ -1,5 +1,5 @@
-﻿using ArmoryInventory.App.Interfaces;
-using ArmoryInventory.App.Views;
+﻿using ArmoryInventory.App.Views;
+using ArmoryInventory.Data.Interfaces;
 using ArmoryInventory.Domain.Enums;
 using ArmoryInventory.Domain.Models;
 using CommunityToolkit.Mvvm.ComponentModel;

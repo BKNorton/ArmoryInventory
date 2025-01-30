@@ -1,11 +1,11 @@
-﻿using ArmoryInventory.App.Interfaces;
-using ArmoryInventory.Domain.Enums;
+﻿using ArmoryInventory.Domain.Enums;
 using ArmoryInventory.Domain.Models;
 using ArmoryInventory.App.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using Type = ArmoryInventory.Domain.Enums.Type;
+using ArmoryInventory.Data.Interfaces;
 
 namespace ArmoryInventory.App.ViewModels
 {
@@ -178,7 +178,7 @@ namespace ArmoryInventory.App.ViewModels
             if (selectedItem is null) return;
             if (selectedItem.Id != Guid.Empty)
             {
-                await repository.RemoveItemAsync(selectedItem);
+                await repository.RemoveItem(selectedItem);
                 await ReFreshItemsAsync();
             }
         }
