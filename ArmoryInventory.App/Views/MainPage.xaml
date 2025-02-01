@@ -8,292 +8,300 @@
              x:Name="InventoryMainPage"
              Title="Inventory">
 
+    <Grid
+        RowDefinitions="*,100"
+        ColumnDefinitions="3*,*">
 
-    <ScrollView
-        Orientation="Horizontal">
+        <!--Background Image-->
+        <Image
+            Source="army_background.jpg"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="4"
+            Aspect="AspectFill">
+        </Image>
+
         <Grid
-            RowDefinitions="*,100"
-            ColumnDefinitions="3*,*">
+            Grid.Column="0"
+            Grid.Row="0"
+            Margin="20,0,0,0"
+            RowDefinitions="80,80,*"
+            MinimumWidthRequest="1000"
+            MinimumHeightRequest="400">
 
-                <!--Background Image-->
-            <Image
-                Source="army_background.jpg"
-                Grid.ColumnSpan="2"
-                Grid.RowSpan="4"
-                Aspect="AspectFill">
-            </Image>
-
-
-
+            <!--Search filters-->
             <Grid
-                Grid.Column="0"
                 Grid.Row="0"
-                RowDefinitions="80,80,*"
-                MinimumWidthRequest="1000"
-                Margin="20,0,0,0">
+                ColumnDefinitions="*,*,*,*,*"
+                ColumnSpacing="20"
+                HorizontalOptions="Start">
 
-                <!--Search filters-->
-                <Grid
-                    Grid.Row="0"
-                    ColumnDefinitions="*,*,*,*,*"
-                    ColumnSpacing="20"
-                    HorizontalOptions="Start">
+                <SearchBar
+                    Text="{Binding FilterText}"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    WidthRequest="200"
+                    HeightRequest="45"
+                    VerticalOptions="End"
+                    Placeholder="Search Item"
+                    IsSpellCheckEnabled="False"
+                    BackgroundColor="White">
+                </SearchBar>
 
-                    <SearchBar
-                        Grid.Column="0"
-                        Text="{Binding FilterText}"
-                        HorizontalOptions="Start"
-                        WidthRequest="200"
-                        HeightRequest="45"
-                        VerticalOptions="End"
-                        Placeholder="Search Item"
-                        IsSpellCheckEnabled="False"
-                        BackgroundColor="White">
-                    </SearchBar>
+                <Picker
+                    ItemsSource="{Binding ItemTypePicker}"
+                    SelectedIndex="{Binding ItemTypeFilterIndex}"
+                    Grid.Column="1"
+                    Title="Type"
+                    WidthRequest="150"
+                    VerticalOptions="End"
+                    HorizontalOptions="Start"
+                    BackgroundColor="White"
+                    TitleColor="Orange">
+                </Picker>
 
-                    <Picker
-                        Grid.Column="1"
-                        Title="Type"
-                        ItemsSource="{Binding ItemTypePicker}"
-                        SelectedIndex="{Binding ItemTypeFilterIndex}"
-                        WidthRequest="150"
-                        VerticalOptions="End"
-                        HorizontalOptions="Start"
-                        BackgroundColor="White"
-                        TitleColor="Orange">
-                    </Picker>
+                <Picker
+                    ItemsSource="{Binding TrueOrFalsePicker}"
+                    SelectedIndex="{Binding HasCompFilterIndex}"
+                    Grid.Column="2"
+                    Title="Has All Components"
+                    WidthRequest="150"
+                    VerticalOptions="End"
+                    HorizontalOptions="Start"
+                    BackgroundColor="White"
+                    TitleColor="Orange">
+                </Picker>
 
-                    <Picker
-                        Grid.Column="2"
-                        Title="Has All Components"
-                        ItemsSource="{Binding TrueOrFalsePicker}"
-                        SelectedIndex="{Binding HasCompFilterIndex}"
-                        WidthRequest="150"
-                        VerticalOptions="End"
-                        HorizontalOptions="Start"
-                        BackgroundColor="White"
-                        TitleColor="Orange">
-                    </Picker>
+                <Picker
+                    ItemsSource="{Binding TrueOrFalsePicker}"
+                    SelectedIndex="{Binding MissCapFilterIndex}"
+                    Grid.Column="3"
+                    Title="Mission Capable"
+                    WidthRequest="150"
+                    VerticalOptions="End"
+                    HorizontalOptions="Start"
+                    BackgroundColor="White"
+                    TitleColor="Orange">
+                </Picker>
 
-                    <Picker
-                        Grid.Column="3"
-                        Title="Mission Capable"
-                        ItemsSource="{Binding TrueOrFalsePicker}"
-                        SelectedIndex="{Binding MissCapFilterIndex}"
-                        WidthRequest="150"
-                        VerticalOptions="End"
-                        HorizontalOptions="Start"
-                        BackgroundColor="White"
-                        TitleColor="Orange">
-                    </Picker>
-
-                    <Picker
-                        Grid.Column="4"
-                        Title="Checked Out"
-                        ItemsSource="{Binding TrueOrFalsePicker}"
-                        SelectedIndex="{Binding CheckOutFilterIndex}"
-                        WidthRequest="150"
-                        VerticalOptions="End"
-                        HorizontalOptions="Start"
-                        BackgroundColor="White"
-                        TitleColor="Orange">
-                    </Picker>
-                </Grid>
-
-                <!--Table Header-->
-                <Grid
-                    Grid.Row="1"
-                    ColumnDefinitions="*,*,*,*,*"
-                    RowDefinitions="*"
-                    HeightRequest="60"
-                    VerticalOptions="End">
-
-                    <Frame
-                        Grid.Column="0"
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="black"
-                        MinimumWidthRequest="250"
-                        Padding="0">
-                        <Label 
-                            Text="Serial Number"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Margin="10"
-                            FontSize="Medium"
-                            TextColor="Orange">
-                        </Label>
-                    </Frame>
-
-                    <Frame
-                        Grid.Column="1"
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="Black"
-                        MinimumWidthRequest="250"
-                        Padding="0">
-                        <Label 
-                            Text="Item Type"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Margin="10"
-                            FontSize="Medium"
-                            TextColor="Orange">
-                        </Label>
-                    </Frame>
-
-                    <Frame
-                        Grid.Column="2"
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="Black"
-                        MinimumWidthRequest="250"
-                        Padding="0">
-                        <Label 
-                            Text="Complete"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Margin="10"
-                            FontSize="Medium"
-                            TextColor="Orange">
-                        </Label>
-                    </Frame>
-
-                    <Frame
-                        Grid.Column="3"
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="Black"
-                        MinimumWidthRequest="250"
-                        Padding="0">
-                        <Label 
-                            Text="Mission Capable"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Margin="10"
-                            FontSize="Medium"
-                            TextColor="Orange">
-                        </Label>
-                    </Frame>
-
-                    <Frame
-                        Grid.Column="4"
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="Black"
-                        MinimumWidthRequest="250"
-                        Padding="0">
-                        <Label 
-                            Text="Checked Out"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Margin="10"
-                            FontSize="Medium"
-                            TextColor="Orange">
-                        </Label>
-                    </Frame>
-                </Grid>
-
-                <!--Inventory Table-->
-                <CollectionView
-                    Grid.Row="2"
-                    ItemsSource="{Binding ItemCollection}"
-                    Header="{Binding .}"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="Start"
-                    SelectionMode="Single"
-                    SelectedItem="{Binding SelectedItem}"
-                    MinimumWidthRequest="1000">
-
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="m:Item"
-                                      >
-                            <Grid
-                                RowDefinitions="*"
-                                ColumnDefinitions="*,*,*,*,*"
-                                BackgroundColor="White">
-
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup Name="CommonStates">
-                                        <VisualState Name="Normal" />
-                                        <VisualState Name="Selected">
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="LightGrey" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-
-                                <Frame 
-                                    CornerRadius="0"
-                                    BorderColor="Black"
-                                    BackgroundColor="Transparent"
-                                    Grid.Column="0">
-                                    <Label 
-                                        Text="{Binding SerialNumber}"
-                                        HorizontalOptions="Start">
-                                    </Label>
-                                </Frame>
-
-                                <Frame 
-                                    CornerRadius="0"
-                                    BorderColor="Black"
-                                    BackgroundColor="Transparent"
-                                    Grid.Column="1">
-                                    <Label 
-                                        Text="{Binding ItemType}"
-                                        HorizontalOptions="Start">
-                                    </Label>
-                                </Frame>
-
-                                <Frame 
-                                    CornerRadius="0"
-                                    BorderColor="Black"
-                                    BackgroundColor="Transparent"
-                                    Grid.Column="2">
-                                    <Label 
-                                        Text="{Binding HasAllComponents}"
-                                        HorizontalOptions="Start">
-                                    </Label>
-                                </Frame>
-
-                                <Frame 
-                                    CornerRadius="0"
-                                    BorderColor="Black"
-                                    BackgroundColor="Transparent"
-                                    Grid.Column="3">
-                                    <Label 
-                                        Text="{Binding MissionCapable}"
-                                        HorizontalOptions="Start">
-                                    </Label>
-                                </Frame>
-
-                                <Frame 
-                                    CornerRadius="0"
-                                    BorderColor="Black"
-                                    BackgroundColor="Transparent"
-                                    Grid.Column="4">
-                                    <Label 
-                                        Text="{Binding CheckedOut}"
-                                        HorizontalOptions="Start">
-                                    </Label>
-                                </Frame>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                <Picker
+                    ItemsSource="{Binding TrueOrFalsePicker}"
+                    SelectedIndex="{Binding CheckOutFilterIndex}"
+                    Grid.Column="4"
+                    Title="Checked Out"
+                    WidthRequest="150"
+                    VerticalOptions="End"
+                    HorizontalOptions="Start"
+                    BackgroundColor="White"
+                    TitleColor="Orange">
+                </Picker>
             </Grid>
 
+            <!--Table Header-->
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="*,*,*,*,*"
+                RowDefinitions="*"
+                HeightRequest="60"
+                VerticalOptions="End">
 
-            <!--Add, Edit, Delete Buttons-->
-            <VerticalStackLayout
+                <Frame
+                    Grid.Column="0"
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    BackgroundColor="black"
+                    MinimumWidthRequest="250"
+                    Padding="0">
+
+                    <Label 
+                        Text="Serial Number"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Margin="10"
+                        FontSize="Medium"
+                        TextColor="Orange">
+                    </Label>
+                </Frame>
+
+                <Frame
+                    Grid.Column="1"
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    BackgroundColor="Black"
+                    MinimumWidthRequest="250"
+                    Padding="0">
+
+                    <Label 
+                        Text="Item Type"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Margin="10"
+                        FontSize="Medium"
+                        TextColor="Orange">
+                    </Label>
+                </Frame>
+
+                <Frame
+                    Grid.Column="2"
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    BackgroundColor="Black"
+                    MinimumWidthRequest="250"
+                    Padding="0">
+
+                    <Label 
+                        Text="Complete"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Margin="10"
+                        FontSize="Medium"
+                        TextColor="Orange">
+                    </Label>
+                </Frame>
+
+                <Frame
+                    Grid.Column="3"
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    BackgroundColor="Black"
+                    MinimumWidthRequest="250"
+                    Padding="0">
+
+                    <Label 
+                        Text="Mission Capable"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Margin="10"
+                        FontSize="Medium"
+                        TextColor="Orange">
+                    </Label>
+                </Frame>
+
+                <Frame
+                    Grid.Column="4"
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    BackgroundColor="Black"
+                    MinimumWidthRequest="250"
+                    Padding="0">
+
+                    <Label 
+                        Text="Checked Out"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Margin="10"
+                        FontSize="Medium"
+                        TextColor="Orange">
+                    </Label>
+                </Frame>
+            </Grid>
+
+            <!--Inventory Table-->
+            <CollectionView   
+                ItemsSource="{Binding ItemCollection}"
+                Header="{Binding .}"
+                SelectedItem="{Binding SelectedItem}"
+                Grid.Row="2"    
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start"
+                SelectionMode="Single"
+                MinimumWidthRequest="1000"
+                ItemsUpdatingScrollMode="KeepLastItemInView">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:Item">
+                        <Grid
+                            RowDefinitions="*"
+                            ColumnDefinitions="*,*,*,*,*"
+                            BackgroundColor="White">
+
+                            <!--Item State Settings-->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="LightGrey" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Frame 
+                                Grid.Column="0"
+                                CornerRadius="0"
+                                BorderColor="Black"
+                                BackgroundColor="Transparent">
+
+                                <Label 
+                                    Text="{Binding SerialNumber}"
+                                    HorizontalOptions="Start">
+                                </Label>
+                            </Frame>
+
+                            <Frame 
+                                Grid.Column="1"
+                                CornerRadius="0"
+                                BorderColor="Black"
+                                BackgroundColor="Transparent">
+
+                                <Label 
+                                    Text="{Binding ItemType}"
+                                    HorizontalOptions="Start">
+                                </Label>
+                            </Frame>
+
+                            <Frame 
+                                Grid.Column="2"
+                                CornerRadius="0"
+                                BorderColor="Black"
+                                BackgroundColor="Transparent">
+
+                                <Label 
+                                    Text="{Binding HasAllComponents}"
+                                    HorizontalOptions="Start">
+                                </Label>
+                            </Frame>
+
+                            <Frame 
+                                Grid.Column="3"
+                                CornerRadius="0"
+                                BorderColor="Black"
+                                BackgroundColor="Transparent">
+
+                                <Label 
+                                    Text="{Binding MissionCapable}"
+                                    HorizontalOptions="Start">
+                                </Label>
+                            </Frame>
+
+                            <Frame 
+                                Grid.Column="4"
+                                CornerRadius="0"
+                                BorderColor="Black"
+                                BackgroundColor="Transparent">
+
+                                <Label 
+                                    Text="{Binding CheckedOut}"
+                                    HorizontalOptions="Start">
+                                </Label>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+
+
+        <!--Add, Edit, Delete Buttons-->
+        <VerticalStackLayout
             Grid.Column="1"
             Grid.Row="0"
             Spacing="5"
             HorizontalOptions="Start"
             VerticalOptions="Start"
             Margin="50,180,0,0">
-                <Button
+            <Button
                 WidthRequest="150"
                 HeightRequest="50"
                 Text="Add"
@@ -302,9 +310,9 @@
                 BorderColor="Black"
                 BorderWidth="1"
                 Command="{Binding GoToAddItemPageCommand}">
-                </Button>
+            </Button>
 
-                <Button
+            <Button
                 x:Name="EditBttn"
                 WidthRequest="150"
                 HeightRequest="50"
@@ -314,9 +322,9 @@
                 BorderColor="Black"
                 BorderWidth="1"
                 Command="{Binding GoToEditItemPageCommand}">
-                </Button>
+            </Button>
 
-                <Button
+            <Button
                 WidthRequest="150"
                 HeightRequest="50"
                 Margin="0,25,0,0"
@@ -326,11 +334,11 @@
                 BorderColor="Black"
                 BorderWidth="1"
                 Command="{Binding DeleteItemCommand}">
-                </Button>
-            </VerticalStackLayout>
+            </Button>
+        </VerticalStackLayout>
 
-            <!--Bottom Mission and Checkout Buttons-->
-            <HorizontalStackLayout
+        <!--Bottom Mission and Checkout Buttons-->
+        <HorizontalStackLayout
             Grid.Column="0"
             Grid.Row="1"
             Spacing="50"
@@ -338,8 +346,8 @@
             HorizontalOptions="Center"
             VerticalOptions="Start">
 
-                <Button
-                WidthRequest="300"
+            <Button
+                WidthRequest="200"
                 HeightRequest="60"
                 Text="Checkout"
                 HorizontalOptions="Center"
@@ -347,10 +355,10 @@
                 TextColor="Black"
                 BorderColor="Black"
                 BorderWidth="1">
-                </Button>
+            </Button>
 
-                <Button
-                WidthRequest="300"
+            <Button
+                WidthRequest="200"
                 HeightRequest="60"
                 Text="Create Mission"
                 HorizontalOptions="Center"
@@ -358,9 +366,7 @@
                 TextColor="Black"
                 BorderColor="Black"
                 BorderWidth="1">
-                </Button>
-
-            </HorizontalStackLayout>
-        </Grid>
-    </ScrollView>
+            </Button>
+        </HorizontalStackLayout>
+    </Grid>
 </ContentPage>

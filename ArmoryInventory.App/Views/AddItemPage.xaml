@@ -6,35 +6,34 @@
              x:Class="ArmoryInventory.App.Views.AddItemPage"
              Title="Add Item">
     
-    <Grid
-        RowDefinitions="*,170"
-        ColumnDefinitions="*,*">
+    <ScrollView
+        Orientation="Both">
         
-        <Image
-            Source="antenna_pic.png"
-            Aspect="AspectFill"
-            Grid.RowSpan="2"
-            Grid.ColumnSpan="2">
-        </Image>
+        <Grid
+            ColumnDefinitions="*,*">
 
-        <ScrollView
-            Grid.Row="0"
-            Grid.Column="0"
-            Orientation="Horizontal"
-            HorizontalOptions="Center"
-            MinimumWidthRequest="800"
-            Margin="0,50,0,0">
+            <!--Background Image-->
+            <Image
+                Source="antenna_pic.png"
+                Aspect="AspectFill"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2">
+            </Image>
 
+            <!--Add Item Form-->
             <Grid
-                RowDefinitions="*,*,*,*,*,*,*,*"
+                Grid.Column="0"
+                Margin="50,50,0,0"
+                RowDefinitions="*,*,*,*,*,*,*,*,170"
                 HorizontalOptions="Center">
 
+                <!--Header-->
                 <Frame
                     Grid.Row="0"
                     BackgroundColor="Black"
                     CornerRadius="0"
                     BorderColor="Orange">
-                    
+
                     <Label
                         Text="Item"
                         TextColor="Orange"
@@ -43,16 +42,17 @@
                     </Label>
                 </Frame>
 
+                <!--Input Fields-->
                 <Frame
                     Grid.Row="1"
                     CornerRadius="0"
                     BorderColor="Orange"
                     BackgroundColor="LightGray"
                     HeightRequest="100">
-                    
+
                     <Grid
                         ColumnDefinitions="170,300,*">
-                        
+
                         <Label
                             Grid.Column="0"
                             Text="Serial Number"
@@ -61,10 +61,10 @@
                         </Label>
 
                         <Entry
+                            Text="{Binding Item.SerialNumber}"
                             Grid.Column="1"
                             VerticalOptions="Center"
                             HorizontalOptions="Start"
-                            Text="{Binding Item.SerialNumber}"
                             Placeholder="Serial Number"
                             WidthRequest="300"
                             BackgroundColor="White"
@@ -79,10 +79,10 @@
                     BorderColor="Orange"
                     BackgroundColor="LightGray"
                     HeightRequest="100">
-                    
+
                     <Grid
                         ColumnDefinitions="170,300,*">
-                        
+
                         <Label
                             Grid.Row="0"
                             Text="Type"
@@ -110,10 +110,10 @@
                     BorderColor="Orange"
                     BackgroundColor="LightGray"
                     HeightRequest="100">
-                    
+
                     <Grid
                         ColumnDefinitions="170,300,*">
-                        
+
                         <Label
                             Grid.Column="0"
                             Text="Has All Components"
@@ -141,10 +141,10 @@
                     BorderColor="Orange"
                     BackgroundColor="LightGray"
                     CornerRadius="0">
-                    
+
                     <Grid
                         ColumnDefinitions="170,300,*">
-                        
+
                         <Label
                             Grid.Column="0"
                             Text="Defects"
@@ -154,6 +154,7 @@
                         </Label>
 
                         <Editor
+                            Text="{Binding Defects}"
                             Grid.Column="1"
                             Background="White"
                             VerticalOptions="Center"
@@ -161,8 +162,7 @@
                             Placeholder="Defects"
                             WidthRequest="300"
                             HeightRequest="200"
-                            Margin="20,0,0,0"
-                            Text="{Binding Defects}">
+                            Margin="20,0,0,0">
                         </Editor>
 
                         <Label
@@ -181,10 +181,10 @@
                     CornerRadius="0"
                     BorderColor="Orange"
                     BackgroundColor="LightGray">
-                    
+
                     <Grid
                         ColumnDefinitions="170,300,*">
-                        
+
                         <Label
                             Grid.Column="0"
                             Text="Missing Components"
@@ -193,6 +193,7 @@
                         </Label>
 
                         <Editor
+                            Text="{Binding MissingComponents}"
                             Grid.Column="1"
                             VerticalOptions="Center"
                             HorizontalOptions="Start"
@@ -200,8 +201,7 @@
                             WidthRequest="300"
                             HeightRequest="200"
                             BackgroundColor="White"
-                            Margin="20,0,0,0"
-                            Text="{Binding MissingComponents}">
+                            Margin="20,0,0,0">
                         </Editor>
 
                         <Label
@@ -221,10 +221,10 @@
                     BorderColor="Orange"
                     BackgroundColor="LightGray"
                     HeightRequest="100">
-                    
+
                     <Grid
                         ColumnDefinitions="170,300,*">
-                        
+
                         <Label
                             Grid.Column="0"
                             Text="Mission Capable"
@@ -252,10 +252,10 @@
                     BorderColor="Orange"
                     BackgroundColor="LightGray"
                     HeightRequest="100">
-                    
+
                     <Grid
                         ColumnDefinitions="170,300,*">
-                        
+
                         <Label
                             Grid.Column="0"
                             Text="Checked Out"
@@ -276,38 +276,38 @@
                         </Picker>
                     </Grid>
                 </Frame>
+
+                <!--Buttons-->
+                <HorizontalStackLayout
+                    Grid.Row="8"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Spacing="10"
+                    Margin="0,10,0,0">
+
+                    <Button
+                        Text="Cancel"
+                        WidthRequest="150"
+                        HeightRequest="50"
+                        BackgroundColor="Orange"
+                        TextColor="Black"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding GoToMainPageCommand}">
+                    </Button>
+
+                    <Button
+                        Text="Add"
+                        WidthRequest="150"
+                        HeightRequest="50"
+                        BackgroundColor="Orange"
+                        TextColor="Black"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding AddItemCommand}">
+                    </Button>
+                </HorizontalStackLayout>
             </Grid>
-        </ScrollView>
-
-        <HorizontalStackLayout
-            Grid.Row="1"
-            Grid.Column="0"
-            HorizontalOptions="Center"
-            VerticalOptions="Start"
-            Spacing="10"
-            Margin="470,5,0,0">
-
-            <Button
-                Text="Add"
-                WidthRequest="150"
-                HeightRequest="50"
-                BackgroundColor="Orange"
-                TextColor="Black"
-                BorderColor="Black"
-                BorderWidth="1"
-                Command="{Binding AddItemCommand}">
-            </Button>
-
-            <Button
-                Text="Cancel"
-                WidthRequest="150"
-                HeightRequest="50"
-                BackgroundColor="Orange"
-                TextColor="Black"
-                BorderColor="Black"
-                BorderWidth="1"
-                Command="{Binding GoToMainPageCommand}">
-            </Button>
-        </HorizontalStackLayout>
-    </Grid>
+        </Grid>
+    </ScrollView>
 </ContentPage>
