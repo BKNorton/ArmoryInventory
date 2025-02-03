@@ -165,11 +165,11 @@ namespace ArmoryInventory.App.ViewModels
         }
 
         [RelayCommand]
-        public async Task GoToEditItemPageAsync()
+        public async Task GoToViewItemPageAsync()
         {
             if (selectedItem is null) return;
             if (selectedItem.Id == Guid.Empty) return;
-            await Shell.Current.GoToAsync($"{nameof(EditItemPage)}?Id={selectedItem.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ViewItemPage)}?Id={selectedItem.Id}");
         }
 
         [RelayCommand]

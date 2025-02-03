@@ -204,8 +204,7 @@
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="Start"
                 SelectionMode="Single"
-                MinimumWidthRequest="1000"
-                ItemsUpdatingScrollMode="KeepLastItemInView">
+                MinimumWidthRequest="1000">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="m:Item">

@@ -31,7 +31,7 @@ namespace ArmoryInventory.App
             //Pages
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<AddItemPage>();
-            builder.Services.AddTransient<EditItemPage>();
+            builder.Services.AddTransient<ViewItemPage>();
 
             //View Models
             builder.Services.AddTransient<MainViewModel>();

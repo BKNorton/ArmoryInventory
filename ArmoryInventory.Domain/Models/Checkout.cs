@@ -9,7 +9,7 @@ namespace ArmoryInventory.Domain.Models
 {
     public class Checkout
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public Guid ItemId { get; set; }
         public DateTime DateCheckedOut { get; set; }
         public DateTime? DateCheckedIn { get; set; }

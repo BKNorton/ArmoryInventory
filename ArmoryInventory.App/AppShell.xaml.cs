@@ -11,7 +11,7 @@ namespace ArmoryInventory.App
             //Routing
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(AddItemPage), typeof(AddItemPage));
-            Routing.RegisterRoute(nameof(EditItemPage), typeof(EditItemPage));
+            Routing.RegisterRoute(nameof(ViewItemPage), typeof(ViewItemPage));
         }
     }
 }

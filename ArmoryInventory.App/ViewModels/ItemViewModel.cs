@@ -4,6 +4,7 @@ using ArmoryInventory.Domain.Enums;
 using ArmoryInventory.Domain.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using Type = ArmoryInventory.Domain.Enums.Type;
 
 namespace ArmoryInventory.App.ViewModels
@@ -11,6 +12,7 @@ namespace ArmoryInventory.App.ViewModels
     public partial class ItemViewModel : ObservableObject
     {
         private readonly IRepository repository;
+        public ObservableCollection<Checkout> CheckoutHistory { get; set; }
 
         private Item item;
         public Item Item
@@ -97,6 +99,7 @@ namespace ArmoryInventory.App.ViewModels
         public ItemViewModel(IRepository repository)
         {
             item = new Item();
+            CheckoutHistory = [];
             defects = string.Empty;
             missingComponents = string.Empty;
             this.repository = repository;
@@ -115,6 +118,16 @@ namespace ArmoryInventory.App.ViewModels
             if (Item is null || Item.Id == Guid.Empty) return;
 
             //Load properties
+            var checkouts = Item.CheckoutHistory;
+            if (checkouts != null && checkouts.Count > 0)
+            {
+                for ( int i = 0; i < checkouts.Count; i++)
+                {
+                    CheckoutHistory.Add(checkouts[i]);
+                }
+            }
+
+
             ItemTypeSelectedIndex = (int)Item.ItemType;
             HasComponentsSelectedIndex = (int)Item.HasAllComponents;
             MissionCapableSelectedIndex = (int)Item.MissionCapable;
