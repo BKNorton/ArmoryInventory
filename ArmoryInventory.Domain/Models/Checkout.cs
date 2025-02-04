@@ -11,6 +11,7 @@ namespace ArmoryInventory.Domain.Models
     {
         public int Id { get; set; }
         public Guid ItemId { get; set; }
+        public Item Item { get; set; }
         public DateTime DateCheckedOut { get; set; }
         public DateTime? DateCheckedIn { get; set; }
         public string CheckedOutTo { get; set; }

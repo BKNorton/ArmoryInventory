@@ -320,7 +320,7 @@
                 TextColor="Black"
                 BorderColor="Black"
                 BorderWidth="1"
-                Command="{Binding GoToEditItemPageCommand}">
+                Command="{Binding GoToViewItemPageCommand}">
             </Button>
 
             <Button

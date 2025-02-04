@@ -11,5 +11,6 @@ namespace ArmoryInventory.Data.Interfaces
         public Task<List<Item>> GetItemsBySearchAsync(string filterText);
         public Task<List<Item>> GetItemsByFiltersAsync(int typeIndex, int hasCompIndex, int missCapIndex, int checkOutIndex);
         public Task<Task> UpdateItemAsync(Guid Id, Item item);
+        public Task<List<Checkout>> GetCheckoutHistoryAsync(string Id);
     }
 }

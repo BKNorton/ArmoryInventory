@@ -13,6 +13,7 @@ namespace ArmoryInventory.Data.Repositories
             _context = context;
         }
 
+        //Item Functions
         public async Task<Task> AddItemAsync(Item item)
         {
             await _context.Items.AddAsync(item);
@@ -115,6 +116,20 @@ namespace ArmoryInventory.Data.Repositories
 
             _context.SaveChanges();
             return Task.CompletedTask;
+        }
+
+        //Checkout Functions
+
+        public async Task<List<Checkout>> GetCheckoutHistoryAsync(string Id)
+        {
+            var checkoutHistory = await _context.Checkouts.Where(x => x.ItemId.ToString().ToLower() == Id.ToLower()).ToListAsync();
+
+            if (checkoutHistory != null)
+            {
+                return checkoutHistory;
+            }
+            checkoutHistory = new List<Checkout>();
+            return checkoutHistory;
         }
     }
 }

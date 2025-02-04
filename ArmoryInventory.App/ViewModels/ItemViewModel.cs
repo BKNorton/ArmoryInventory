@@ -118,7 +118,7 @@ namespace ArmoryInventory.App.ViewModels
             if (Item is null || Item.Id == Guid.Empty) return;
 
             //Load properties
-            var checkouts = Item.CheckoutHistory;
+            var checkouts = await repository.GetCheckoutHistoryAsync(itemId);
             if (checkouts != null && checkouts.Count > 0)
             {
                 for ( int i = 0; i < checkouts.Count; i++)

@@ -6,29 +6,255 @@
              x:DataType="vm:ItemViewModel"
              x:Class="ArmoryInventory.App.Views.ViewItemPage"
              Title="ViewItemPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Checkout History"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
 
+    <ScrollView
+        Orientation="Both">
+    <Grid
+        RowDefinitions="200,*"
+        ColumnDefinitions="*,*">
+
+        <!--Background Image-->
+        <Image
+                Source="antenna_pic.png"
+                Aspect="AspectFill"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2">
+        </Image>
+
+        <!--Item Details-->
+            <StackLayout
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="Center"
+            Margin="0,20,0,0">
+
+                <HorizontalStackLayout
+                    WidthRequest="1200"
+                    HorizontalOptions="Center">
+
+                    <StackLayout
+                        WidthRequest="240">
+                        <Frame
+                            CornerRadius="0"
+                            BorderColor="Orange"
+                            BackgroundColor="Black"
+                            Padding="5">
+                            <Label
+                                Text="Item Type"
+                                HorizontalOptions="Center"
+                                TextColor="Orange"
+                                FontSize="Medium">
+                            </Label>
+                        </Frame>
+                        <Frame
+                            CornerRadius="0"
+                            BorderColor="Orange">
+                            <Label
+                                Text="{Binding Item.ItemType}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            </Label>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                    WidthRequest="240">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="Black"
+                        Padding="5">
+                        <Label
+                            Text="Serial Number"
+                            HorizontalOptions="Center"
+                            TextColor="Orange"
+                            FontSize="Medium">
+                        </Label>
+                    </Frame>
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange">
+                        <Label
+                            Text="{Binding Item.SerialNumber}"
+                            HorizontalOptions="Center">
+                        </Label>
+                    </Frame>
+                </StackLayout>
+                
+                <StackLayout
+                    WidthRequest="240">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="Black"
+                        Padding="5">
+                        <Label
+                            Text="Has Components"
+                            HorizontalOptions="Center"
+                            TextColor="Orange"
+                            FontSize="Medium">
+                        </Label>
+                    </Frame>
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange">
+                        <Label
+                            Text="{Binding Item.HasAllComponents}"
+                            HorizontalOptions="Center">
+                        </Label>
+                    </Frame>
+                </StackLayout>
+                
+                <StackLayout
+                    WidthRequest="240">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="Black"
+                        Padding="5">
+                        <Label
+                            Text="Mission Capable"
+                            HorizontalOptions="Center"
+                            TextColor="Orange"
+                            FontSize="Medium">
+                        </Label>
+                    </Frame>
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange">
+                        <Label
+                            Text="{Binding Item.MissionCapable}"
+                            HorizontalOptions="Center">
+                        </Label>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout
+                    WidthRequest="240">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="Black"
+                        Padding="5">
+                        <Label
+                            Text="Checked Out"
+                            HorizontalOptions="Center"
+                            TextColor="Orange"
+                            FontSize="Medium">
+                        </Label>
+                    </Frame>
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange">
+                        <Label
+                            Text="{Binding Item.CheckedOut}"
+                            HorizontalOptions="Center">
+                        </Label>
+                    </Frame>
+                </StackLayout>
+            </HorizontalStackLayout>
+        </StackLayout>
+
+        <!--Right Column (Checkout History)-->
+        <StackLayout
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalOptions="Center"
+            Margin="0,50,0,0"
+            WidthRequest="400">
+            
+            <Frame
+                CornerRadius="0"
+                BackgroundColor="Black"
+                BorderColor="Orange"
+                Padding="5">
+                
+                <Label
+                    Text="Checkout History"
+                    TextColor="Orange"
+                    HorizontalOptions="Center"
+                    FontSize="Title">
+                </Label>
+            </Frame>
+        
         <CollectionView
-            ItemsSource="{Binding CheckoutHistory}">
+            ItemsSource="{Binding CheckoutHistory}"
+>
             <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="m:Checkout">
+                    <Frame
+                        CornerRadius="0"
+                        BackgroundColor="White"
+                        BorderColor="Orange">
                     <StackLayout>
                         <Label
+                            TextColor="Black"
                             Text="Date Checkedout">
                         </Label>
                         <Label
+                            TextColor="Black"
                             Text="{Binding CheckedOutTo}">
                         </Label>
                     </StackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        </StackLayout>
 
-    </VerticalStackLayout>
+        <!--Left Column (Item Details)-->
+        <StackLayout
+            Grid.Row="1"
+            Grid.Column="0"
+            HorizontalOptions="Center"
+            Margin="0,50,0,0"
+            WidthRequest="400">
+            
+            <Frame
+                CornerRadius="0"
+                BackgroundColor="Black"
+                BorderColor="Orange"
+                Padding="5">
 
-    
+                <Label
+                    Text="Item Details"
+                    TextColor="Orange"
+                    HorizontalOptions="Center"
+                    FontSize="Title">
+                </Label>
+            </Frame>
+            
+            <Frame
+                CornerRadius="0"
+                BorderColor="Orange"
+                BackgroundColor="LightGrey"
+                HeightRequest="180">
+                
+                <Editor
+                    Text="{Binding Defects}"
+                    Placeholder="Defects"
+                    BackgroundColor="White"
+                    HeightRequest="140">
+                </Editor>
+                
+            </Frame>
+
+            <Frame
+                CornerRadius="0"
+                BorderColor="Orange"
+                BackgroundColor="LightGrey"
+                HeightRequest="180">
+
+                <Editor
+                    Text="{Binding MissingComponents}"
+                    Placeholder="Missing Components"
+                    BackgroundColor="White"
+                    HeightRequest="140">
+                </Editor>
+
+            </Frame>
+        </StackLayout>
+    </Grid>
+    </ScrollView>
+
 </ContentPage>

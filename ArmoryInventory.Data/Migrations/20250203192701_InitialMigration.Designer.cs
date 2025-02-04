@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArmoryInventory.Data.Migrations
 {
     [DbContext(typeof(ArmoryInventoryDbContext))]
-    [Migration("20250130210415_SeededData")]
-    partial class SeededData
+    [Migration("20250203192701_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,9 +22,9 @@ namespace ArmoryInventory.Data.Migrations
 
             modelBuilder.Entity("ArmoryInventory.Domain.Models.Checkout", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("CheckedOutTo")
                         .IsRequired()
@@ -51,6 +51,26 @@ namespace ArmoryInventory.Data.Migrations
                     b.HasIndex("ItemId");
 
                     b.ToTable("Checkouts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CheckedOutTo = "Captain",
+                            DateCheckedOut = new DateTime(2019, 5, 9, 9, 15, 0, 0, DateTimeKind.Unspecified),
+                            DefectsAfter = "[]",
+                            DefectsBefore = "[]",
+                            ItemId = new Guid("c7bb57a3-f967-47f8-a4a4-d4529e898c25")
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CheckedOutTo = "Captain",
+                            DateCheckedOut = new DateTime(2020, 5, 9, 9, 15, 0, 0, DateTimeKind.Unspecified),
+                            DefectsAfter = "[]",
+                            DefectsBefore = "[]",
+                            ItemId = new Guid("c7bb57a3-f967-47f8-a4a4-d4529e898c25")
+                        });
                 });
 
             modelBuilder.Entity("ArmoryInventory.Domain.Models.Item", b =>
@@ -320,11 +340,13 @@ namespace ArmoryInventory.Data.Migrations
 
             modelBuilder.Entity("ArmoryInventory.Domain.Models.Checkout", b =>
                 {
-                    b.HasOne("ArmoryInventory.Domain.Models.Item", null)
+                    b.HasOne("ArmoryInventory.Domain.Models.Item", "Item")
                         .WithMany("CheckoutHistory")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("ArmoryInventory.Domain.Models.Item", b =>
