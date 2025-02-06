@@ -29,4 +29,6 @@ public partial class ViewItemPage : ContentPage
 	{
 		await this.itemViewModel.LoadItem(itemId);
 	}
+
+
 }

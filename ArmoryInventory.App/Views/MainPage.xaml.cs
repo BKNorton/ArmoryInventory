@@ -20,5 +20,7 @@ public partial class MainPage : ContentPage
         // Refresh the Inventory everytime you navigate back to mainpage so
         // that any changes that have been made are reflected
         await this.mainViewModel.ReFreshItemsAsync();
+        this.Window.MinimumHeight = 800;
+        this.Window.MinimumWidth = 1200;
     }
 }
