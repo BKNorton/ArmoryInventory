@@ -111,7 +111,7 @@
                     Padding="5">
 
                     <Label
-                        Text="{Binding Item.MissionCapable}"
+                        Text="{Binding MissionCapable}"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
                         FontSize="Small">
@@ -152,14 +152,15 @@
                 CornerRadius="90"
                 HeightRequest="20"
                 WidthRequest="20"
-                BackgroundColor="Red"
+                BackgroundColor="{Binding MissCapButtonColor}"
                 BorderColor="Black"
                 BorderWidth="2"
-                Source="x.png"
+                Source="{Binding MissCapButtonIcon}"
                 Aspect="Fill"
                 Margin="10"
                 VerticalOptions="Center"
-                ToolTipProperties.Text="Click to mark Mission Capable or Not Mission Capable">
+                ToolTipProperties.Text="Click to mark Mission Capable or Not Mission Capable"
+                Command="{Binding MissonCapableButtonPressedCommand}">
             </ImageButton>
         </HorizontalStackLayout>
 

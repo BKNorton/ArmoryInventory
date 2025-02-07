@@ -54,6 +54,16 @@ namespace ArmoryInventory.App.ViewModels
             }
         }
 
+        private TrueOrFalse missionCapable;
+        public TrueOrFalse MissionCapable
+        {
+            get => missionCapable;
+            set
+            {
+                SetProperty(ref missionCapable, value);
+            }
+        }
+
         private int checkedOutSelectedIndex;
         public int CheckedOutSelectedIndex
         {
@@ -94,6 +104,32 @@ namespace ArmoryInventory.App.ViewModels
             get => Enum.GetNames(typeof(TrueOrFalse)).ToList();
         }
 
+        //ItemViewPage specific properties
+        private string notMissCapIconRelativePath = "x.png";
+        private string missCapIconRelativePath = "";
+        private string missCapableColor = "Green";
+        private string notMissCapableColor = "Red";
+
+        private string missCapButtonColor;
+        public string MissCapButtonColor
+        {
+            get => missCapButtonColor;
+            set
+            {
+                SetProperty(ref missCapButtonColor, value);
+            }
+        }
+
+        private string missCapButtonIcon;
+        public string MissCapButtonIcon
+        {
+            get => missCapButtonIcon;
+            set
+            {
+                SetProperty(ref missCapButtonIcon, value);
+            }
+        }
+
         public ItemViewModel(IRepository repository)
         {
             item = new Item();
@@ -101,6 +137,8 @@ namespace ArmoryInventory.App.ViewModels
             defects = string.Empty;
             missingComponents = string.Empty;
             this.repository = repository;
+            missCapButtonColor = string.Empty;
+            missCapButtonIcon = string.Empty;
         }
 
         /// <summary>
@@ -126,11 +164,22 @@ namespace ArmoryInventory.App.ViewModels
                 }
             }
 
-
+            MissionCapable = item.MissionCapable;
             ItemTypeSelectedIndex = (int)Item.ItemType;
             HasComponentsSelectedIndex = (int)Item.HasAllComponents;
             MissionCapableSelectedIndex = (int)Item.MissionCapable;
             CheckedOutSelectedIndex = (int)Item.CheckedOut;
+
+            if (MissionCapable == TrueOrFalse.True)
+            {
+                MissCapButtonColor = missCapableColor;
+                MissCapButtonIcon = missCapIconRelativePath;
+            }
+            else
+            {
+                MissCapButtonColor = notMissCapableColor;
+                MissCapButtonIcon = notMissCapIconRelativePath;
+            }
 
             var defString = string.Empty;
             if (Item.Defects != null)
@@ -238,9 +287,28 @@ namespace ArmoryInventory.App.ViewModels
         }
 
         [RelayCommand]
-        public void RefreshItemDetails()
+        public async Task RefreshItemDetails()
         {
-            RefreshDetails(); 
+            await LoadItemAsync(item.Id.ToString()); 
+        }
+
+        [RelayCommand]
+        public async Task MissonCapableButtonPressed()
+        {
+            if (item.MissionCapable == TrueOrFalse.True)
+            {
+                Item.MissionCapable = TrueOrFalse.False;
+                MissCapButtonColor = notMissCapableColor;
+                MissCapButtonIcon = notMissCapIconRelativePath;
+            }
+            else
+            {
+                Item.MissionCapable = TrueOrFalse.True;
+                MissCapButtonColor = missCapableColor;
+                MissCapButtonIcon = missCapIconRelativePath;
+            }
+            await repository.UpdateItemAsync(item.Id, item);
+            await LoadItemAsync(item.Id.ToString() );
         }
     }
 }
