@@ -107,18 +107,20 @@ namespace ArmoryInventory.Data.Repositories
         {
             if (Id != item.Id) return Task.CompletedTask;
 
-            var itemToUpdate = await _context.Items.FirstOrDefaultAsync(x => x.Id == Id);
-            if (itemToUpdate != null)
-            {
-                itemToUpdate.SerialNumber = item.SerialNumber;
-                itemToUpdate.ItemType = item.ItemType;
-                itemToUpdate.Defects = item.Defects;
-                itemToUpdate.HasAllComponents = item.HasAllComponents;
-                itemToUpdate.MissingComponents = item.MissingComponents;
-                itemToUpdate.CheckedOut = item.CheckedOut;
-            }
+            //var itemToUpdate = await _context.Items.FirstOrDefaultAsync(x => x.Id == Id);
+            //if (itemToUpdate != null)
+            //{
+            //    itemToUpdate.Defects = item.Defects;
+            //    itemToUpdate.HasAllComponents = item.HasAllComponents;
+            //    itemToUpdate.MissingComponents = item.MissingComponents;
+            //    itemToUpdate.CheckedOut = item.CheckedOut;
+            //    _context.Items.Update(itemToUpdate);
+            //    _context.SaveChanges();
+            //}
 
-            _context.SaveChanges();
+            _context.Items.Update(item);
+            await _context.SaveChangesAsync();
+            
             return Task.CompletedTask;
         }
 

@@ -150,6 +150,7 @@ namespace ArmoryInventory.App.ViewModels
         public async Task LoadItemAsync(string itemId)
         {
             //Verification
+            if (Item.SerialNumber != null) Item = new Item();
             if (string.IsNullOrWhiteSpace(itemId)) return;
             Item = await repository.GetItemByIdAsync(itemId);
             if (Item is null || Item.Id == Guid.Empty) return;
@@ -165,10 +166,10 @@ namespace ArmoryInventory.App.ViewModels
             }
 
             MissionCapable = item.MissionCapable;
-            ItemTypeSelectedIndex = (int)Item.ItemType;
-            HasComponentsSelectedIndex = (int)Item.HasAllComponents;
-            MissionCapableSelectedIndex = (int)Item.MissionCapable;
-            CheckedOutSelectedIndex = (int)Item.CheckedOut;
+            //ItemTypeSelectedIndex = (int)Item.ItemType;
+            //HasComponentsSelectedIndex = (int)Item.HasAllComponents;
+            //MissionCapableSelectedIndex = (int)Item.MissionCapable;
+            //CheckedOutSelectedIndex = (int)Item.CheckedOut;
 
             if (MissionCapable == TrueOrFalse.True)
             {
@@ -287,9 +288,9 @@ namespace ArmoryInventory.App.ViewModels
         }
 
         [RelayCommand]
-        public async Task RefreshItemDetails()
+        public void RefreshItemDetails()
         {
-            await LoadItemAsync(item.Id.ToString()); 
+            RefreshDetails(); 
         }
 
         [RelayCommand]
@@ -297,18 +298,18 @@ namespace ArmoryInventory.App.ViewModels
         {
             if (item.MissionCapable == TrueOrFalse.True)
             {
-                Item.MissionCapable = TrueOrFalse.False;
+                MissionCapable = Item.MissionCapable = TrueOrFalse.False;
                 MissCapButtonColor = notMissCapableColor;
                 MissCapButtonIcon = notMissCapIconRelativePath;
             }
             else
             {
-                Item.MissionCapable = TrueOrFalse.True;
+                MissionCapable = Item.MissionCapable = TrueOrFalse.True;
                 MissCapButtonColor = missCapableColor;
                 MissCapButtonIcon = missCapIconRelativePath;
             }
             await repository.UpdateItemAsync(item.Id, item);
-            await LoadItemAsync(item.Id.ToString() );
+            
         }
     }
 }
