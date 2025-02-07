@@ -337,12 +337,22 @@
                             BorderColor="Orange"
                             BackgroundColor="LightGrey">
 
-                            <Editor
-                                Text="{Binding Defects}"
-                                Placeholder="Defects"
-                                BackgroundColor="White"
-                                MinimumHeightRequest="180">
-                            </Editor>
+                            <StackLayout>
+
+                                <Label 
+                                    Text="Defects:"
+                                    FontAttributes="Bold"
+                                    Padding="5"
+                                    HorizontalOptions="Center">
+                                </Label>
+                                
+                                <Editor
+                                    Text="{Binding Defects}"
+                                    Placeholder="Defects"
+                                    BackgroundColor="White"
+                                    MinimumHeightRequest="180">
+                                </Editor>
+                            </StackLayout>
                         </Frame>
 
                         <Frame
@@ -351,12 +361,22 @@
                             BorderColor="Orange"
                             BackgroundColor="LightGrey">
 
-                            <Editor
-                                Text="{Binding MissingComponents}"
-                                Placeholder="Missing Components"
-                                BackgroundColor="White"
-                                MinimumHeightRequest="180">
-                            </Editor>
+                            <StackLayout>
+
+                                <Label 
+                                    Text="Missing Components:"
+                                    FontAttributes="Bold"
+                                    Padding="5"
+                                    HorizontalOptions="Center">
+                                </Label>
+
+                                <Editor
+                                    Text="{Binding MissingComponents}"
+                                    Placeholder="Missing Components"
+                                    BackgroundColor="White"
+                                    MinimumHeightRequest="180">
+                                </Editor>
+                            </StackLayout>
                         </Frame>
                     </Grid>
                 </ScrollView>

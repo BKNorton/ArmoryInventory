@@ -18,7 +18,7 @@ namespace ArmoryInventory.App
         {
             base.OnAppearing();
             this.Window.MinimumHeight = 800;
-            this.Window.MinimumWidth = 1200;
+            this.Window.MinimumWidth = 1500;
         }
     }
 }
