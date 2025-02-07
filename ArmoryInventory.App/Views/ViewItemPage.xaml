@@ -19,7 +19,7 @@
             Grid.ColumnSpan="2">
         </Image>
 
-        <!--Item Details-->
+        <!--Top Stack (Item Essential Details)-->
         <HorizontalStackLayout
             Grid.Row="0"
             Grid.ColumnSpan="2"
@@ -30,29 +30,29 @@
                 MinimumWidthRequest="200">
 
                 <Frame
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="Black"
-                        Padding="5">
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    BackgroundColor="Black"
+                    Padding="5">
 
                     <Label
-                            Text="Item Type"
-                            HorizontalOptions="Center"
-                            TextColor="Orange"
-                            FontSize="Medium">
+                        Text="Item Type"
+                        HorizontalOptions="Center"
+                        TextColor="Orange"
+                        FontSize="Medium">
                     </Label>
                 </Frame>
 
                 <Frame
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        Padding="5">
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    Padding="5">
 
                     <Label
-                            Text="{Binding Item.ItemType}"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            FontSize="Small">
+                        Text="{Binding Item.ItemType}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontSize="Small">
                     </Label>
                 </Frame>
             </StackLayout>
@@ -61,23 +61,23 @@
                 MinimumWidthRequest="200">
 
                 <Frame
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="Black"
-                        Padding="5">
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    BackgroundColor="Black"
+                    Padding="5">
 
                     <Label
-                            Text="Serial Number"
-                            HorizontalOptions="Center"
-                            TextColor="Orange"
-                            FontSize="Medium">
+                        Text="Serial Number"
+                        HorizontalOptions="Center"
+                        TextColor="Orange"
+                        FontSize="Medium">
                     </Label>
                 </Frame>
 
                 <Frame
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        Padding="5">
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    Padding="5">
 
                     <Label
                         Text="{Binding Item.SerialNumber}"
@@ -92,29 +92,29 @@
                 MinimumWidthRequest="200">
 
                 <Frame
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="Black"
-                        Padding="5">
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    BackgroundColor="Black"
+                    Padding="5">
 
                     <Label
-                            Text="Mission Capable"
-                            HorizontalOptions="Center"
-                            TextColor="Orange"
-                            FontSize="Medium">
+                        Text="Mission Capable"
+                        HorizontalOptions="Center"
+                        TextColor="Orange"
+                        FontSize="Medium">
                     </Label>
                 </Frame>
 
                 <Frame
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        Padding="5">
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    Padding="5">
 
                     <Label
-                            Text="{Binding Item.MissionCapable}"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            FontSize="Small">
+                        Text="{Binding Item.MissionCapable}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontSize="Small">
                     </Label>
                 </Frame>
             </StackLayout>
@@ -122,28 +122,28 @@
             <StackLayout
                 MinimumWidthRequest="200">
                 <Frame
-                         CornerRadius="0"
-                         BorderColor="Orange"
-                         BackgroundColor="Black"
-                         Padding="5">
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    BackgroundColor="Black"
+                    Padding="5">
                     <Label
-                            Text="Checked Out"
-                            HorizontalOptions="Center"
-                            TextColor="Orange"
-                            FontSize="Medium">
+                        Text="Checked Out"
+                        HorizontalOptions="Center"
+                        TextColor="Orange"
+                        FontSize="Medium">
                     </Label>
                 </Frame>
 
                 <Frame
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        Padding="5">
+                    CornerRadius="0"
+                    BorderColor="Orange"
+                    Padding="5">
 
                     <Label
-                            Text="{Binding Item.CheckedOut}"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            FontSize="Small">
+                        Text="{Binding Item.CheckedOut}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontSize="Small">
                     </Label>
                 </Frame>
             </StackLayout>
@@ -172,24 +172,26 @@
             Padding="50,50,0,50">
 
             <StackLayout
-            Grid.Row="0"
-            Grid.Column="0"
-            HorizontalOptions="Center">
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalOptions="Center">
 
+                <!--Header-->
                 <Frame
-                CornerRadius="0"
-                BackgroundColor="Black"
-                BorderColor="Orange"
-                Padding="5">
+                    CornerRadius="0"
+                    BackgroundColor="Black"
+                    BorderColor="Orange"
+                    Padding="5">
 
                     <Label
-                    Text="Checkout History"
-                    TextColor="Orange"
-                    HorizontalOptions="Center"
-                    FontSize="Title">
+                        Text="Checkout History"
+                        TextColor="Orange"
+                        HorizontalOptions="Center"
+                        FontSize="Title">
                     </Label>
                 </Frame>
 
+                <!--Collection-->
                 <CollectionView
                     ItemsSource="{Binding CheckoutHistory}"
                     SelectionMode="Single"
@@ -197,12 +199,9 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="m:Checkout">
-
-
-
-                                <Grid
-                                    ColumnDefinitions="*,*"
-                                    BackgroundColor="White">
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                BackgroundColor="White">
 
                                 <!--Item State Settings-->
                                 <VisualStateManager.VisualStateGroups>
@@ -217,32 +216,36 @@
                                 </VisualStateManager.VisualStateGroups>
 
                                 <Frame
-                                        CornerRadius="0"
-                                        Grid.Column="0"
+                                    CornerRadius="0"
+                                    Grid.Column="0"
                                     BackgroundColor="Transparent"
                                     BorderColor="Black">
+                                    
                                     <StackLayout
                                         Padding="0">
-                                    <Label
-                                    TextColor="Black"
-                                    Text="Date Checked out"
+                                        
+                                        <Label
+                                            TextColor="Black"
+                                            Text="Date Checked out"
                                         FontAttributes="Bold">
-                                    </Label>
+                                        </Label>
 
-                                    <Label
-                                    TextColor="Black"
-                                    Text="{Binding DateCheckedOut}">
-                                    </Label>
+                                        <Label
+                                            TextColor="Black"
+                                            Text="{Binding DateCheckedOut}">
+                                        </Label>
                                     </StackLayout>
-                                    </Frame>
+                                </Frame>
 
                                 <Frame
                                     CornerRadius="0"
                                     Grid.Column="2"
                                     BackgroundColor="Transparent"
                                     BorderColor="Black">
+                                    
                                     <StackLayout
                                         Padding="0">
+                                        
                                         <Label
                                             TextColor="Black"
                                             Text="Checked out to"
@@ -256,12 +259,12 @@
                                     </StackLayout>
                                 </Frame>
                             </Grid>
-                          
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
 
+            <!--Buttons-->
             <StackLayout
                 Grid.Row="0"
                 Grid.Column="1"
@@ -270,25 +273,24 @@
                 HorizontalOptions="Start">
 
                 <Button
-                        Text="View"
-                        WidthRequest="100"
-                        HeightRequest="40"
-                        BackgroundColor="Orange"
-                        TextColor="Black"
-                        BorderColor="Black"
-                        BorderWidth="1">
+                    Text="View"
+                    WidthRequest="100"
+                    HeightRequest="40"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1">
                 </Button>
 
                 <Button
-                        Text="Checkout"
-                        WidthRequest="100"
-                        HeightRequest="40"
-                        BackgroundColor="Orange"
-                        TextColor="Black"
-                        BorderColor="Black"
-                        BorderWidth="1">
+                    Text="Checkout"
+                    WidthRequest="100"
+                    HeightRequest="40"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1">
                 </Button>
-
             </StackLayout>
         </Grid>
 
@@ -300,62 +302,64 @@
             ColumnDefinitions="2*,*"
             Padding="50,50,0,50">
             
-        <StackLayout
-            Grid.Row="0"
-            Grid.Column="0"
-            HorizontalOptions="Center">
-
-            <Frame
-                CornerRadius="0"
-                BackgroundColor="Black"
-                BorderColor="Orange"
-                Padding="5">
-
-                <Label
-                    Text="Item Details"
-                    TextColor="Orange"
-                    HorizontalOptions="Center"
-                    FontSize="Title">
-                </Label>
-            </Frame>
-
-            <ScrollView 
+            <StackLayout
                 Grid.Row="0"
                 Grid.Column="0"
-                VerticalOptions="FillAndExpand">
-                <Grid
-                    RowDefinitions="*,*"
-                    >
-                    <Frame
-                        Grid.Row="0"
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="LightGrey">
+                HorizontalOptions="Center">
 
-                        <Editor
-                        Text="{Binding Defects}"
-                        Placeholder="Defects"
-                        BackgroundColor="White"
-                            MinimumHeightRequest="180">
-                        </Editor>
-                    </Frame>
+                <!--Header-->
+                <Frame
+                    CornerRadius="0"
+                    BackgroundColor="Black"
+                    BorderColor="Orange"
+                    Padding="5">
 
-                    <Frame
-                        Grid.Row="1"
-                        CornerRadius="0"
-                        BorderColor="Orange"
-                        BackgroundColor="LightGrey">
+                    <Label
+                        Text="Item Details"
+                        TextColor="Orange"
+                        HorizontalOptions="Center"
+                        FontSize="Title">
+                    </Label>
+                </Frame>
 
-                        <Editor
-                            Text="{Binding MissingComponents}"
-                            Placeholder="Missing Components"
-                            BackgroundColor="White"
-                            MinimumHeightRequest="180">
-                        </Editor>
-                    </Frame>
-                </Grid>
-            </ScrollView>
-        </StackLayout>
+                <ScrollView 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    VerticalOptions="FillAndExpand">
+                    
+                    <Grid
+                        RowDefinitions="*,*">
+                        
+                        <Frame
+                            Grid.Row="0"
+                            CornerRadius="0"
+                            BorderColor="Orange"
+                            BackgroundColor="LightGrey">
+
+                            <Editor
+                                Text="{Binding Defects}"
+                                Placeholder="Defects"
+                                BackgroundColor="White"
+                                MinimumHeightRequest="180">
+                            </Editor>
+                        </Frame>
+
+                        <Frame
+                            Grid.Row="1"
+                            CornerRadius="0"
+                            BorderColor="Orange"
+                            BackgroundColor="LightGrey">
+
+                            <Editor
+                                Text="{Binding MissingComponents}"
+                                Placeholder="Missing Components"
+                                BackgroundColor="White"
+                                MinimumHeightRequest="180">
+                            </Editor>
+                        </Frame>
+                    </Grid>
+                </ScrollView>
+            </StackLayout>
 
             <StackLayout
                 Grid.Row="0"
@@ -365,25 +369,24 @@
                 HorizontalOptions="Start">
 
                 <Button
-                        Text="Update"
-                        WidthRequest="100"
-                        HeightRequest="40"
-                        BackgroundColor="Orange"
-                        TextColor="Black"
-                        BorderColor="Black"
-                        BorderWidth="1">
+                    Text="Update"
+                    WidthRequest="100"
+                    HeightRequest="40"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1">
                 </Button>
 
                 <Button
-                        Text="Undo"
-                        WidthRequest="100"
-                        HeightRequest="40"
-                        BackgroundColor="Orange"
-                        TextColor="Black"
-                        BorderColor="Black"
-                        BorderWidth="1">
+                    Text="Undo"
+                    WidthRequest="100"
+                    HeightRequest="40"
+                    BackgroundColor="Orange"
+                    TextColor="Black"
+                    BorderColor="Black"
+                    BorderWidth="1">
                 </Button>
-
             </StackLayout>
         </Grid>
     </Grid>
