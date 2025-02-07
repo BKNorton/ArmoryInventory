@@ -169,7 +169,7 @@
             Grid.Column="1"
             RowDefinitions="*"
             ColumnDefinitions="2*,*"
-            Padding="50,50,0,0">
+            Padding="50,50,0,50">
 
             <StackLayout
             Grid.Row="0"
@@ -192,7 +192,8 @@
 
                 <CollectionView
                     ItemsSource="{Binding CheckoutHistory}"
-                    SelectionMode="Single">
+                    SelectionMode="Single"
+                    VerticalOptions="FillAndExpand">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="m:Checkout">
@@ -297,7 +298,7 @@
             Grid.Column="0"
             RowDefinitions="*"
             ColumnDefinitions="2*,*"
-            Padding="50,50,0,0">
+            Padding="50,50,0,50">
             
         <StackLayout
             Grid.Row="0"
@@ -321,8 +322,7 @@
             <ScrollView 
                 Grid.Row="0"
                 Grid.Column="0"
-                VerticalOptions="FillAndExpand"
-                Margin="0,0,0,50">
+                VerticalOptions="FillAndExpand">
                 <Grid
                     RowDefinitions="*,*"
                     >

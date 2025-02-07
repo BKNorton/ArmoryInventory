@@ -37,7 +37,7 @@ namespace ArmoryInventory.Data.Configurations.DataSeeding
                     },
                     new Checkout()
                     {
-                        Id = 2,
+                        Id = 3,
                         ItemId = new Guid("05EB7F71-CC56-48C9-B886-2D3A9352057C"),
                         DateCheckedOut = new DateOnly(2018, 07, 20),
                         DateCheckedIn = null,
@@ -47,7 +47,7 @@ namespace ArmoryInventory.Data.Configurations.DataSeeding
                     },
                     new Checkout()
                     {
-                        Id = 2,
+                        Id = 4,
                         ItemId = new Guid("05EB7F71-CC56-48C9-B886-2D3A9352057C"),
                         DateCheckedOut = new DateOnly(2018, 10, 12),
                         DateCheckedIn = null,
@@ -57,7 +57,7 @@ namespace ArmoryInventory.Data.Configurations.DataSeeding
                     },
                     new Checkout()
                     {
-                        Id = 2,
+                        Id = 5,
                         ItemId = new Guid("05EB7F71-CC56-48C9-B886-2D3A9352057C"),
                         DateCheckedOut = new DateOnly(2019, 07, 20),
                         DateCheckedIn = null,
@@ -67,7 +67,7 @@ namespace ArmoryInventory.Data.Configurations.DataSeeding
                     },
                     new Checkout()
                     {
-                        Id = 2,
+                        Id = 6,
                         ItemId = new Guid("05EB7F71-CC56-48C9-B886-2D3A9352057C"),
                         DateCheckedOut = new DateOnly(2019, 05, 10),
                         DateCheckedIn = null,
@@ -77,7 +77,7 @@ namespace ArmoryInventory.Data.Configurations.DataSeeding
                     },
                     new Checkout()
                     {
-                        Id = 2,
+                        Id = 7,
                         ItemId = new Guid("05EB7F71-CC56-48C9-B886-2D3A9352057C"),
                         DateCheckedOut = new DateOnly(2019, 02, 05),
                         DateCheckedIn = null,
@@ -87,7 +87,7 @@ namespace ArmoryInventory.Data.Configurations.DataSeeding
                     },
                     new Checkout()
                     {
-                        Id = 2,
+                        Id = 8,
                         ItemId = new Guid("05EB7F71-CC56-48C9-B886-2D3A9352057C"),
                         DateCheckedOut = new DateOnly(2020, 07, 20),
                         DateCheckedIn = null,
@@ -96,7 +96,7 @@ namespace ArmoryInventory.Data.Configurations.DataSeeding
                         DefectsAfter = new List<string>(),
                     }, new Checkout()
                     {
-                        Id = 2,
+                        Id = 9,
                         ItemId = new Guid("05EB7F71-CC56-48C9-B886-2D3A9352057C"),
                         DateCheckedOut = new DateOnly(2021, 07, 20),
                         DateCheckedIn = null,
@@ -105,7 +105,7 @@ namespace ArmoryInventory.Data.Configurations.DataSeeding
                         DefectsAfter = new List<string>(),
                     }, new Checkout()
                     {
-                        Id = 2,
+                        Id = 10,
                         ItemId = new Guid("05EB7F71-CC56-48C9-B886-2D3A9352057C"),
                         DateCheckedOut = new DateOnly(2022, 07, 20),
                         DateCheckedIn = null,
