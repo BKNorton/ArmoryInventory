@@ -122,7 +122,7 @@ namespace ArmoryInventory.Data.Repositories
 
         public async Task<List<Checkout>> GetCheckoutHistoryAsync(string Id)
         {
-            var checkoutHistory = await _context.Checkouts.Where(x => x.ItemId.ToString().ToLower() == Id.ToLower()).ToListAsync();
+            var checkoutHistory = await _context.Checkouts.Where(x => x.ItemId.ToString().ToLower() == Id.ToLower()).OrderByDescending(x => x.DateCheckedOut).ToListAsync();
 
             if (checkoutHistory != null)
             {

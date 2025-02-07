@@ -158,7 +158,8 @@
                 Source="x.png"
                 Aspect="Fill"
                 Margin="10"
-                VerticalOptions="Center">
+                VerticalOptions="Center"
+                ToolTipProperties.Text="Click to mark Mission Capable or Not Mission Capable">
             </ImageButton>
         </HorizontalStackLayout>
 
@@ -190,29 +191,71 @@
                 </Frame>
 
                 <CollectionView
-                ItemsSource="{Binding CheckoutHistory}">
+                    ItemsSource="{Binding CheckoutHistory}"
+                    SelectionMode="Single">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="m:Checkout">
 
-                            <Frame
-                            CornerRadius="0"
-                            BackgroundColor="White"
-                            BorderColor="Orange">
 
-                                <HorizontalStackLayout>
 
+                                <Grid
+                                    ColumnDefinitions="*,*"
+                                    BackgroundColor="White">
+
+                                <!--Item State Settings-->
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="LightGrey" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Frame
+                                        CornerRadius="0"
+                                        Grid.Column="0"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="Black">
+                                    <StackLayout
+                                        Padding="0">
                                     <Label
                                     TextColor="Black"
-                                    Text="Date Checkedout">
+                                    Text="Date Checked out"
+                                        FontAttributes="Bold">
                                     </Label>
 
                                     <Label
                                     TextColor="Black"
                                     Text="{Binding DateCheckedOut}">
                                     </Label>
-                                </HorizontalStackLayout>
-                            </Frame>
+                                    </StackLayout>
+                                    </Frame>
+
+                                <Frame
+                                    CornerRadius="0"
+                                    Grid.Column="2"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="Black">
+                                    <StackLayout
+                                        Padding="0">
+                                        <Label
+                                            TextColor="Black"
+                                            Text="Checked out to"
+                                            FontAttributes="Bold">
+                                        </Label>
+
+                                        <Label
+                                            TextColor="Black"
+                                            Text="{Binding CheckedOutTo}">
+                                        </Label>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                          
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
