@@ -375,17 +375,19 @@
                     BackgroundColor="Orange"
                     TextColor="Black"
                     BorderColor="Black"
-                    BorderWidth="1">
+                    BorderWidth="1"
+                    Command="{Binding UpdateItemCommand}">
                 </Button>
 
                 <Button
-                    Text="Undo"
+                    Text="Refresh"
                     WidthRequest="100"
                     HeightRequest="40"
                     BackgroundColor="Orange"
                     TextColor="Black"
                     BorderColor="Black"
-                    BorderWidth="1">
+                    BorderWidth="1"
+                    Command="{Binding RefreshItemDetailsCommand}">
                 </Button>
             </StackLayout>
         </Grid>

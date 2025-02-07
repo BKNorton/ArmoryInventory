@@ -27,7 +27,7 @@ public partial class ViewItemPage : ContentPage
 
 	private async void LoadItem(string itemId)
 	{
-		await this.itemViewModel.LoadItem(itemId);
+		await this.itemViewModel.LoadItemAsync(itemId);
 	}
 
 

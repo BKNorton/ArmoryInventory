@@ -13,5 +13,12 @@ namespace ArmoryInventory.App
             Routing.RegisterRoute(nameof(AddItemPage), typeof(AddItemPage));
             Routing.RegisterRoute(nameof(ViewItemPage), typeof(ViewItemPage));
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            this.Window.MinimumHeight = 800;
+            this.Window.MinimumWidth = 1200;
+        }
     }
 }

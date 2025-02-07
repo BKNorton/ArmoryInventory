@@ -71,7 +71,6 @@ namespace ArmoryInventory.App.ViewModels
             set
             {
                 SetProperty(ref defects, value);
-                Item.Defects = value.Split(',').ToList();
             }
         }
 
@@ -82,7 +81,6 @@ namespace ArmoryInventory.App.ViewModels
             set
             {
                 SetProperty(ref missingComponents, value);
-                Item.MissingComponents = value.Split(",").ToList();
             }
         }
 
@@ -106,11 +104,12 @@ namespace ArmoryInventory.App.ViewModels
         }
 
         /// <summary>
-        /// itemId sent from the view to this viewModel uses the injected repository to grab the item and load it into the view model.
+        /// itemId sent from the view to this viewModel uses the injected repository to grab the item and load it into the view model, so that any page using this view model 
+        /// can display its information.
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public async Task LoadItem(string itemId)
+        public async Task LoadItemAsync(string itemId)
         {
             //Verification
             if (string.IsNullOrWhiteSpace(itemId)) return;
@@ -118,7 +117,7 @@ namespace ArmoryInventory.App.ViewModels
             if (Item is null || Item.Id == Guid.Empty) return;
 
             //Load properties
-            var checkouts = await repository.GetCheckoutHistoryAsync(itemId);
+            var checkouts = Item.CheckoutHistory?.ToList();
             if (checkouts != null && checkouts.Count > 0)
             {
                 for ( int i = 0; i < checkouts.Count; i++)
@@ -138,9 +137,9 @@ namespace ArmoryInventory.App.ViewModels
             {
                 for (int i = 0; i < Item.Defects.Count; i++)
                 {
-                    defString += Item.Defects[i];
+                    defString += Item.Defects[i].Trim();
 
-                    if (i != Item.Defects.Count - 1) defString += ", ";
+                    if (i < Item.Defects.Count - 1) defString += ", ";
                 }
                 Defects = defString;
             }
@@ -150,9 +149,9 @@ namespace ArmoryInventory.App.ViewModels
             {
                 for (int i = 0; i < Item.MissingComponents.Count; i++)
                 {
-                    missString += Item.MissingComponents[i];
+                    missString += Item.MissingComponents[i].Trim();
 
-                    if (i != Item.MissingComponents.Count - 1) missString += ", ";
+                    if (i < Item.MissingComponents.Count - 1) missString += ", ";
                 }
                 MissingComponents = missString;
             }
@@ -182,6 +181,38 @@ namespace ArmoryInventory.App.ViewModels
             }
         }
 
+        private async void RefreshDetails()
+        {
+            var item = await repository.GetItemByIdAsync(Item.Id.ToString());
+            var defString = string.Empty;
+            Defects = string.Empty;
+            if (item.Defects != null)
+            {
+                for (int i = 0; i < item.Defects.Count; i++)
+                {
+                    defString += item.Defects[i].Trim();
+
+                    if (i < item.Defects.Count - 1) defString += ", ";
+                }  
+                Defects = defString;
+            }
+
+            var missString = string.Empty;
+            MissingComponents = string.Empty;
+            if (item.MissingComponents != null)
+            {
+                for (int i = 0; i < item.MissingComponents.Count; i++)
+                {
+                    missString += item.MissingComponents[i].Trim();
+
+                    if (i < item.MissingComponents.Count - 1) missString += ", ";
+                }
+                MissingComponents = missString;
+            }
+        }
+
+        //Commands
+
         [RelayCommand]
         public async Task GoToMainPageAsync()
         {
@@ -201,10 +232,15 @@ namespace ArmoryInventory.App.ViewModels
         [RelayCommand]
         public async Task UpdateItem()
         {
-            SetItemPropsWithPickers();
+            Item.MissingComponents = MissingComponents.Split(",").Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+            Item.Defects = Defects.Split(",").Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+            await repository.UpdateItemAsync(item.Id, item);;
+        }
 
-            await repository.UpdateItemAsync(item.Id, item);
-            await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
+        [RelayCommand]
+        public void RefreshItemDetails()
+        {
+            RefreshDetails(); 
         }
     }
 }

@@ -14,6 +14,7 @@ namespace ArmoryInventory.Data.Repositories
         }
 
         //Item Functions
+
         public async Task<Task> AddItemAsync(Item item)
         {
             await _context.Items.AddAsync(item);
@@ -21,9 +22,14 @@ namespace ArmoryInventory.Data.Repositories
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// This includes Item CheckoutHistory
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Task<Item> GetItemByIdAsync(string id)
         {
-            var item = _context.Items.Where(x => x.Id.ToString().ToLower() == id).FirstOrDefault();
+            var item = _context.Items.Where(x => x.Id.ToString().ToLower() == id).Include(i => i.CheckoutHistory).FirstOrDefault();
                   if (item != null)
                   {
                       return Task.FromResult(item);
@@ -79,10 +85,8 @@ namespace ArmoryInventory.Data.Repositories
                 else return itemsList;
             }
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var items = await _context.Items.Where(x => !string.IsNullOrWhiteSpace(x.SerialNumber)
-                && x.SerialNumber.StartsWith(filterText, StringComparison.OrdinalIgnoreCase))?.ToListAsync();
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                && x.SerialNumber.StartsWith(filterText, StringComparison.OrdinalIgnoreCase)).ToListAsync();
 
             if (items is null || items.Count <= 0)
             {
@@ -119,17 +123,17 @@ namespace ArmoryInventory.Data.Repositories
         }
 
         //Checkout Functions
+        //Currently not needed
+        //public async Task<List<Checkout>> GetCheckoutHistoryAsync(string Id)
+        //{
+        //    var checkoutHistory = await _context.Checkouts.Where(x => x.ItemId.ToString().ToLower() == Id.ToLower()).OrderByDescending(x => x.DateCheckedOut).ToListAsync();
 
-        public async Task<List<Checkout>> GetCheckoutHistoryAsync(string Id)
-        {
-            var checkoutHistory = await _context.Checkouts.Where(x => x.ItemId.ToString().ToLower() == Id.ToLower()).OrderByDescending(x => x.DateCheckedOut).ToListAsync();
-
-            if (checkoutHistory != null)
-            {
-                return checkoutHistory;
-            }
-            checkoutHistory = new List<Checkout>();
-            return checkoutHistory;
-        }
+        //    if (checkoutHistory != null)
+        //    {
+        //        return checkoutHistory;
+        //    }
+        //    checkoutHistory = new List<Checkout>();
+        //    return checkoutHistory;
+        //}
     }
 }
