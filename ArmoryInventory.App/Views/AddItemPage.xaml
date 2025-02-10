@@ -5,296 +5,257 @@
              x:DataType="vm:ItemViewModel"
              x:Class="ArmoryInventory.App.Views.AddItemPage"
              Title="Add Item">
-    
-    <ScrollView
-        Orientation="Both">
-        
+
+    <Grid
+        ColumnDefinitions="*,*"
+        RowDefinitions="*,50">
+
+        <!--Background Image-->
+        <Image
+            Source="antenna_pic.png"
+            Aspect="AspectFill"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2">
+        </Image>
+
+        <!--Add Item Form-->
         <Grid
-            ColumnDefinitions="*,*">
+            RowDefinitions="80,9*,*"
+            Grid.Column="0"
+            Padding="20"
+            MaximumWidthRequest="800">
 
-            <!--Background Image-->
-            <Image
-                Source="antenna_pic.png"
-                Aspect="AspectFill"
-                Grid.RowSpan="2"
-                Grid.ColumnSpan="2">
-            </Image>
+            <!--Header-->
+            <Frame
+                Grid.Row="0"
+                Style="{StaticResource HeaderFrame}">
 
-            <!--Add Item Form-->
-            <Grid
-                Grid.Column="0"
-                Margin="50,50,0,0"
-                RowDefinitions="*,*,*,*,*,*,*,*,170"
-                HorizontalOptions="Center">
+                <Label
+                    Text="Item"
+                    Style="{StaticResource HeaderLable}"
+                    FontSize="Header">
+                </Label>
+            </Frame>
 
-                <!--Header-->
-                <Frame
-                    Grid.Row="0"
-                    Style="{StaticResource HeaderFrame}">
+            <!--Input Fields-->
+            <ScrollView
+                Grid.Row="1"
+                VerticalOptions="FillAndExpand">
 
-                    <Label
-                        Text="Item"
-                        Style="{StaticResource HeaderLable}"
-                        FontSize="Header">
-                    </Label>
-                </Frame>
+                <StackLayout>
 
-                <!--Input Fields-->
-                <Frame
-                    Grid.Row="1"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="LightGray"
-                    HeightRequest="100">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="LightGray">
 
-                    <Grid
-                        ColumnDefinitions="170,300,*">
+                        <Grid
+                            ColumnDefinitions="*,*,*">
 
-                        <Label
-                            Grid.Column="0"
-                            Text="Serial Number"
-                            VerticalOptions="Center"
-                            WidthRequest="90">
-                        </Label>
+                            <Label
+                                Grid.Column="0"
+                                Text="Serial Number"
+                                VerticalOptions="Center">
+                            </Label>
 
-                        <Entry
-                            Text="{Binding Item.SerialNumber}"
-                            Grid.Column="1"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Start"
-                            Placeholder="Serial Number"
-                            WidthRequest="300"
-                            BackgroundColor="White"
-                            Margin="20,0,0,0">
-                        </Entry>
-                    </Grid>
-                </Frame>
+                            <Entry
+                                Text="{Binding Item.SerialNumber}"
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                Placeholder="Serial Number"
+                                BackgroundColor="White">
+                            </Entry>
+                        </Grid>
+                    </Frame>
 
-                <Frame
-                    Grid.Row="2"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="LightGray"
-                    HeightRequest="100">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="LightGray">
 
-                    <Grid
-                        ColumnDefinitions="170,300,*">
+                        <Grid
+                            ColumnDefinitions="*,*,*">
 
-                        <Label
-                            Grid.Row="0"
-                            Text="Type"
-                            VerticalOptions="Center"
-                            WidthRequest="90">
-                        </Label>
+                            <Label
+                                Grid.Row="0"
+                                Text="Type"
+                                VerticalOptions="Center">
+                            </Label>
 
-                        <Picker 
-                            ItemsSource="{Binding ItemTypePicker}"
-                            SelectedIndex="{Binding ItemTypeSelectedIndex}"
-                            Title="Select a Type"
-                            Grid.Column="1"
-                            WidthRequest="300"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Start"
-                            BackgroundColor="White"
-                            Margin="20,0,0,0">
-                        </Picker>
-                    </Grid>
-                </Frame>
+                            <Picker 
+                                ItemsSource="{Binding ItemTypePicker}"
+                                SelectedIndex="{Binding ItemTypeSelectedIndex}"
+                                Title="Select a Type"
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                BackgroundColor="White">
+                            </Picker>
+                        </Grid>
+                    </Frame>
 
-                <Frame
-                    Grid.Row="3"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="LightGray"
-                    HeightRequest="100">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="LightGray">
 
-                    <Grid
-                        ColumnDefinitions="170,300,*">
+                        <Grid
+                            ColumnDefinitions="*,*,*">
 
-                        <Label
-                            Grid.Column="0"
-                            Text="Has All Components"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Center"
-                            WidthRequest="90">
-                        </Label>
+                            <Label
+                                Grid.Column="0"
+                                Text="Has All Components"
+                                VerticalOptions="Center">
+                            </Label>
 
-                        <Picker 
-                            ItemsSource="{Binding TrueOrFalsePicker}"
-                            SelectedIndex="{Binding HasComponentsSelectedIndex}"
-                            Title="True or False"
-                            Grid.Column="1"
-                            WidthRequest="300"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Start"
-                            BackgroundColor="White"
-                            Margin="20,0,0,0">
-                        </Picker>
-                    </Grid>
-                </Frame>
+                            <Picker 
+                                ItemsSource="{Binding TrueOrFalsePicker}"
+                                SelectedIndex="{Binding HasComponentsSelectedIndex}"
+                                Title="True or False"
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                BackgroundColor="White">
+                            </Picker>
+                        </Grid>
+                    </Frame>
 
-                <Frame
-                    Grid.Row="4"
-                    BorderColor="Orange"
-                    BackgroundColor="LightGray"
-                    CornerRadius="0">
+                    <Frame
+                        BorderColor="Orange"
+                        BackgroundColor="LightGray"
+                        CornerRadius="0">
 
-                    <Grid
-                        ColumnDefinitions="170,300,*">
+                        <Grid
+                            ColumnDefinitions="*,*,*">
 
-                        <Label
-                            Grid.Column="0"
-                            Text="Defects"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Center"
-                            WidthRequest="90">
-                        </Label>
+                            <Label
+                                Grid.Column="0"
+                                Text="Defects"
+                                VerticalOptions="Center">
+                            </Label>
 
-                        <Editor
-                            Text="{Binding Defects}"
-                            Grid.Column="1"
-                            Background="White"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Start"
-                            Placeholder="Defects"
-                            WidthRequest="300"
-                            HeightRequest="200"
-                            Margin="20,0,0,0">
-                        </Editor>
+                            <Editor
+                                Text="{Binding Defects}"
+                                Grid.Column="1"
+                                Background="White"
+                                VerticalOptions="Center"
+                                Placeholder="Defects"
+                                HeightRequest="200">
+                            </Editor>
 
-                        <Label
-                            Grid.Column="2"
-                            Text="List all Defects. Seperate Defects with a comma (,)"
-                            WidthRequest="200"
-                            Margin="50,0,0,0"
-                            VerticalOptions="Center"
-                            TextColor="Blue">
-                        </Label>
-                    </Grid>
-                </Frame>
+                            <Label
+                                Grid.Column="2"
+                                Text="List all Defects. Seperate Defects with a comma (,)"
+                                VerticalOptions="Center"
+                                TextColor="Blue"
+                                Padding="10">
+                            </Label>
+                        </Grid>
+                    </Frame>
 
-                <Frame
-                    Grid.Row="5"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="LightGray">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="LightGray">
 
-                    <Grid
-                        ColumnDefinitions="170,300,*">
+                        <Grid
+                            ColumnDefinitions="*,*,*">
 
-                        <Label
-                            Grid.Column="0"
-                            Text="Missing Components"
-                            VerticalOptions="Center"
-                            WidthRequest="90">
-                        </Label>
+                            <Label
+                                Grid.Column="0"
+                                Text="Missing Components"
+                                VerticalOptions="Center">
+                            </Label>
 
-                        <Editor
-                            Text="{Binding MissingComponents}"
-                            Grid.Column="1"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Start"
-                            Placeholder="Missing Components"
-                            WidthRequest="300"
-                            HeightRequest="200"
-                            BackgroundColor="White"
-                            Margin="20,0,0,0">
-                        </Editor>
+                            <Editor
+                                Text="{Binding MissingComponents}"
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                Placeholder="Missing Components"
+                                HeightRequest="200"
+                                BackgroundColor="White">
+                            </Editor>
 
-                        <Label
-                            Grid.Column="2"
-                            Text="List all Missing Components. Seperate Missing Components with a comma (,)"
-                            Margin="50,0,0,0"
-                            WidthRequest="200"
-                            VerticalOptions="Center"
-                            TextColor="Blue">
-                        </Label>
-                    </Grid>
-                </Frame>
+                            <Label
+                                Grid.Column="2"
+                                Text="List all Missing Components. Seperate Missing Components with a comma (,)"
+                                VerticalOptions="Center"
+                                TextColor="Blue"
+                                Padding="10">
+                            </Label>
+                        </Grid>
+                    </Frame>
 
-                <Frame
-                    Grid.Row="6"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="LightGray"
-                    HeightRequest="100">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="LightGray">
 
-                    <Grid
-                        ColumnDefinitions="170,300,*">
+                        <Grid
+                            ColumnDefinitions="*,*,*">
 
-                        <Label
-                            Grid.Column="0"
-                            Text="Mission Capable"
-                            VerticalOptions="Center"
-                            WidthRequest="90">
-                        </Label>
+                            <Label
+                                Grid.Column="0"
+                                Text="Mission Capable"
+                                VerticalOptions="Center">
+                            </Label>
 
-                        <Picker 
-                            ItemsSource="{Binding TrueOrFalsePicker}"
-                            SelectedIndex="{Binding MissionCapableSelectedIndex}"
-                            Title="True or False"
-                            Grid.Column="1"
-                            WidthRequest="300"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Start"
-                            BackgroundColor="White"
-                            Margin="20,0,0,0">
-                        </Picker>
-                    </Grid>
-                </Frame>
+                            <Picker 
+                                ItemsSource="{Binding TrueOrFalsePicker}"
+                                SelectedIndex="{Binding MissionCapableSelectedIndex}"
+                                Title="True or False"
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                BackgroundColor="White">
+                            </Picker>
+                        </Grid>
+                    </Frame>
 
-                <Frame
-                    Grid.Row="7"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="LightGray"
-                    HeightRequest="100">
+                    <Frame
+                        CornerRadius="0"
+                        BorderColor="Orange"
+                        BackgroundColor="LightGray">
 
-                    <Grid
-                        ColumnDefinitions="170,300,*">
+                        <Grid
+                            ColumnDefinitions="*,*,*">
 
-                        <Label
-                            Grid.Column="0"
-                            Text="Checked Out"
-                            VerticalOptions="Center"
-                            WidthRequest="90">
-                        </Label>
+                            <Label
+                                Grid.Column="0"
+                                Text="Checked Out"
+                                VerticalOptions="Center">
+                            </Label>
 
-                        <Picker 
-                            ItemsSource="{Binding TrueOrFalsePicker}"
-                            SelectedIndex="{Binding CheckedOutSelectedIndex}"
-                            Title="True or False"
-                            Grid.Column="1"
-                            WidthRequest="300"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Start"
-                            BackgroundColor="White"
-                            Margin="20,0,0,0">
-                        </Picker>
-                    </Grid>
-                </Frame>
+                            <Picker 
+                                ItemsSource="{Binding TrueOrFalsePicker}"
+                                SelectedIndex="{Binding CheckedOutSelectedIndex}"
+                                Title="True or False"
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                BackgroundColor="White">
+                            </Picker>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
 
-                <!--Buttons-->
-                <HorizontalStackLayout
-                    Grid.Row="8"
-                    HorizontalOptions="End"
-                    VerticalOptions="Start"
-                    Spacing="10"
-                    Margin="0,10,0,0">
+            <!--Buttons-->
+            <HorizontalStackLayout
+                Padding="0,10,0,0"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Spacing="10"
+                Grid.Row="2">
 
-                    <Button
-                        Text="Cancel"
-                        Style="{StaticResource StandardButton}"
-                        Command="{Binding GoToMainPageCommand}">
-                    </Button>
+                <Button
+                    Text="Cancel"
+                    Style="{StaticResource StandardButton}"
+                    Command="{Binding GoToMainPageCommand}">
+                </Button>
 
-                    <Button
-                        Text="Add"
-                        Style="{StaticResource StandardButton}"
-                        Command="{Binding AddItemCommand}">
-                    </Button>
-                </HorizontalStackLayout>
-            </Grid>
+                <Button
+                    Text="Add"
+                    Style="{StaticResource StandardButton}"
+                    Command="{Binding AddItemCommand}">
+                </Button>
+            </HorizontalStackLayout>
         </Grid>
-    </ScrollView>
+    </Grid>
 </ContentPage>

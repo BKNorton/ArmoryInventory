@@ -286,8 +286,6 @@
                 </Frame>
 
                 <ScrollView 
-                    Grid.Row="0"
-                    Grid.Column="0"
                     VerticalOptions="FillAndExpand">
                     
                     <Grid
