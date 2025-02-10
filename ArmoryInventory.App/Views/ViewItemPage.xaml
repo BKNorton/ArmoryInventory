@@ -30,16 +30,11 @@
                 MinimumWidthRequest="200">
 
                 <Frame
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="Black"
-                    Padding="5">
+                    Style="{StaticResource HeaderFrame}">
 
                     <Label
                         Text="Item Type"
-                        HorizontalOptions="Center"
-                        TextColor="Orange"
-                        FontSize="Medium">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
@@ -61,16 +56,11 @@
                 MinimumWidthRequest="200">
 
                 <Frame
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="Black"
-                    Padding="5">
+                    Style="{StaticResource HeaderFrame}">
 
                     <Label
                         Text="Serial Number"
-                        HorizontalOptions="Center"
-                        TextColor="Orange"
-                        FontSize="Medium">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
@@ -92,16 +82,11 @@
                 MinimumWidthRequest="200">
 
                 <Frame
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="Black"
-                    Padding="5">
+                    Style="{StaticResource HeaderFrame}">
 
                     <Label
                         Text="Mission Capable"
-                        HorizontalOptions="Center"
-                        TextColor="Orange"
-                        FontSize="Medium">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
@@ -121,16 +106,13 @@
 
             <StackLayout
                 MinimumWidthRequest="200">
+                
                 <Frame
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="Black"
-                    Padding="5">
+                    Style="{StaticResource HeaderFrame}">
+                    
                     <Label
                         Text="Checked Out"
-                        HorizontalOptions="Center"
-                        TextColor="Orange"
-                        FontSize="Medium">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
@@ -179,16 +161,11 @@
 
                 <!--Header-->
                 <Frame
-                    CornerRadius="0"
-                    BackgroundColor="Black"
-                    BorderColor="Orange"
-                    Padding="5">
+                    Style="{StaticResource HeaderFrame}">
 
                     <Label
                         Text="Checkout History"
-                        TextColor="Orange"
-                        HorizontalOptions="Center"
-                        FontSize="Title">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
@@ -274,23 +251,13 @@
                 HorizontalOptions="Start">
 
                 <Button
-                    Text="View"
-                    WidthRequest="100"
-                    HeightRequest="40"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                    BorderColor="Black"
-                    BorderWidth="1">
+                    Style="{StaticResource StandardButton}"
+                    Text="View">
                 </Button>
 
                 <Button
-                    Text="Checkout"
-                    WidthRequest="100"
-                    HeightRequest="40"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                    BorderColor="Black"
-                    BorderWidth="1">
+                    Style="{StaticResource StandardButton}"
+                    Text="Checkout">
                 </Button>
             </StackLayout>
         </Grid>
@@ -310,16 +277,11 @@
 
                 <!--Header-->
                 <Frame
-                    CornerRadius="0"
-                    BackgroundColor="Black"
-                    BorderColor="Orange"
-                    Padding="5">
+                    Style="{StaticResource HeaderFrame}">
 
                     <Label
                         Text="Item Details"
-                        TextColor="Orange"
-                        HorizontalOptions="Center"
-                        FontSize="Title">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
@@ -337,7 +299,8 @@
                             BorderColor="Orange"
                             BackgroundColor="LightGrey">
 
-                            <StackLayout>
+                            <StackLayout
+                                Padding="10">
 
                                 <Label 
                                     Text="Defects:"
@@ -350,7 +313,8 @@
                                     Text="{Binding Defects}"
                                     Placeholder="Defects"
                                     BackgroundColor="White"
-                                    MinimumHeightRequest="180">
+                                    MinimumHeightRequest="180"
+                                    VerticalOptions="FillAndExpand">
                                 </Editor>
                             </StackLayout>
                         </Frame>
@@ -361,7 +325,8 @@
                             BorderColor="Orange"
                             BackgroundColor="LightGrey">
 
-                            <StackLayout>
+                            <StackLayout
+                                Padding="10">
 
                                 <Label 
                                     Text="Missing Components:"
@@ -374,7 +339,8 @@
                                     Text="{Binding MissingComponents}"
                                     Placeholder="Missing Components"
                                     BackgroundColor="White"
-                                    MinimumHeightRequest="180">
+                                    MinimumHeightRequest="180"
+                                    VerticalOptions="FillAndExpand">
                                 </Editor>
                             </StackLayout>
                         </Frame>
@@ -390,24 +356,14 @@
                 HorizontalOptions="Start">
 
                 <Button
-                    Text="Update"
-                    WidthRequest="100"
-                    HeightRequest="40"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                    BorderColor="Black"
-                    BorderWidth="1"
-                    Command="{Binding UpdateItemCommand}">
+                    Style="{StaticResource StandardButton}"
+                    Command="{Binding UpdateItemCommand}"
+                    Text="Update">
                 </Button>
 
                 <Button
                     Text="Refresh"
-                    WidthRequest="100"
-                    HeightRequest="40"
-                    BackgroundColor="Orange"
-                    TextColor="Black"
-                    BorderColor="Black"
-                    BorderWidth="1"
+                    Style="{StaticResource StandardButton}"
                     Command="{Binding RefreshItemDetailsCommand}">
                 </Button>
             </StackLayout>

@@ -30,15 +30,12 @@
                 <!--Header-->
                 <Frame
                     Grid.Row="0"
-                    BackgroundColor="Black"
-                    CornerRadius="0"
-                    BorderColor="Orange">
+                    Style="{StaticResource HeaderFrame}">
 
                     <Label
                         Text="Item"
-                        TextColor="Orange"
-                        FontSize="Header"
-                        HorizontalOptions="Center">
+                        Style="{StaticResource HeaderLable}"
+                        FontSize="Header">
                     </Label>
                 </Frame>
 
@@ -287,23 +284,13 @@
 
                     <Button
                         Text="Cancel"
-                        WidthRequest="150"
-                        HeightRequest="50"
-                        BackgroundColor="Orange"
-                        TextColor="Black"
-                        BorderColor="Black"
-                        BorderWidth="1"
+                        Style="{StaticResource StandardButton}"
                         Command="{Binding GoToMainPageCommand}">
                     </Button>
 
                     <Button
                         Text="Add"
-                        WidthRequest="150"
-                        HeightRequest="50"
-                        BackgroundColor="Orange"
-                        TextColor="Black"
-                        BorderColor="Black"
-                        BorderWidth="1"
+                        Style="{StaticResource StandardButton}"
                         Command="{Binding AddItemCommand}">
                     </Button>
                 </HorizontalStackLayout>

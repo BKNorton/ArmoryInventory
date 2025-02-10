@@ -106,91 +106,56 @@
 
                 <Frame
                     Grid.Column="0"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="black"
-                    MinimumWidthRequest="250"
-                    Padding="0">
+                    Style="{StaticResource HeaderFrame}"
+                    MinimumWidthRequest="250">
 
                     <Label 
                         Text="Serial Number"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        Margin="10"
-                        FontSize="Medium"
-                        TextColor="Orange">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
                 <Frame
                     Grid.Column="1"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="Black"
-                    MinimumWidthRequest="250"
-                    Padding="0">
+                    Style="{StaticResource HeaderFrame}"
+                    MinimumWidthRequest="250">
 
                     <Label 
                         Text="Item Type"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        Margin="10"
-                        FontSize="Medium"
-                        TextColor="Orange">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
                 <Frame
                     Grid.Column="2"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="Black"
-                    MinimumWidthRequest="250"
-                    Padding="0">
+                    Style="{StaticResource HeaderFrame}"
+                    MinimumWidthRequest="250">
 
                     <Label 
                         Text="Complete"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        Margin="10"
-                        FontSize="Medium"
-                        TextColor="Orange">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
                 <Frame
                     Grid.Column="3"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="Black"
-                    MinimumWidthRequest="250"
-                    Padding="0">
+                    Style="{StaticResource HeaderFrame}"
+                    MinimumWidthRequest="250">
 
                     <Label 
                         Text="Mission Capable"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        Margin="10"
-                        FontSize="Medium"
-                        TextColor="Orange">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
 
                 <Frame
                     Grid.Column="4"
-                    CornerRadius="0"
-                    BorderColor="Orange"
-                    BackgroundColor="Black"
-                    MinimumWidthRequest="250"
-                    Padding="0">
+                    Style="{StaticResource HeaderFrame}"
+                    MinimumWidthRequest="250">
 
                     <Label 
                         Text="Checked Out"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        Margin="10"
-                        FontSize="Medium"
-                        TextColor="Orange">
+                        Style="{StaticResource HeaderLable}">
                     </Label>
                 </Frame>
             </Grid>
@@ -301,38 +266,22 @@
             VerticalOptions="Start"
             Margin="50,180,0,0">
             <Button
-                WidthRequest="150"
-                HeightRequest="50"
-                Text="Add"
-                BackgroundColor="Orange"
-                TextColor="Black"
-                BorderColor="Black"
-                BorderWidth="1"
-                Command="{Binding GoToAddItemPageCommand}">
+                Style="{StaticResource StandardButton}"
+                Command="{Binding GoToAddItemPageCommand}"
+                Text="Add">
             </Button>
 
             <Button
-                x:Name="EditBttn"
-                WidthRequest="150"
-                HeightRequest="50"
-                Text="View"
-                BackgroundColor="Orange"
-                TextColor="Black"
-                BorderColor="Black"
-                BorderWidth="1"
-                Command="{Binding GoToViewItemPageCommand}">
+                Style="{StaticResource StandardButton}"
+                Command="{Binding GoToViewItemPageCommand}"
+                Text="View">
             </Button>
 
             <Button
-                WidthRequest="150"
-                HeightRequest="50"
+                Style="{StaticResource StandardButton}"
+                Command="{Binding DeleteItemCommand}"
                 Margin="0,25,0,0"
-                Text="Delete"
-                BackgroundColor="Orange"
-                TextColor="Black"
-                BorderColor="Black"
-                BorderWidth="1"
-                Command="{Binding DeleteItemCommand}">
+                Text="Delete">
             </Button>
         </VerticalStackLayout>
 
@@ -346,25 +295,13 @@
             VerticalOptions="Start">
 
             <Button
-                WidthRequest="200"
-                HeightRequest="60"
-                Text="Checkout"
-                HorizontalOptions="Center"
-                BackgroundColor="Orange"
-                TextColor="Black"
-                BorderColor="Black"
-                BorderWidth="1">
+                Style="{StaticResource StandardButtonLarge}"
+                Text="Checkout">
             </Button>
 
             <Button
-                WidthRequest="200"
-                HeightRequest="60"
-                Text="Create Mission"
-                HorizontalOptions="Center"
-                BackgroundColor="Orange"
-                TextColor="Black"
-                BorderColor="Black"
-                BorderWidth="1">
+                Style="{StaticResource StandardButtonLarge}"
+                Text="Create Mission">
             </Button>
         </HorizontalStackLayout>
     </Grid>

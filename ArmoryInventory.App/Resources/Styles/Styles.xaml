@@ -31,8 +31,8 @@
         <Setter Property="BorderWidth" Value="0"/>
         <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="Padding" Value="14,10"/>
-        <Setter Property="MinimumHeightRequest" Value="44"/>
-        <Setter Property="MinimumWidthRequest" Value="44"/>
+        <Setter Property="MinimumHeightRequest" Value="20"/>
+        <Setter Property="MinimumWidthRequest" Value="20"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -422,6 +422,40 @@
         <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Magenta}, Dark={StaticResource White}}" />
         <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
+    </Style>
+    
+    
+    <!--Custom Styles-->
+    <Style TargetType="Button" x:Key="StandardButton">
+        <Setter Property="BackgroundColor" Value="Orange"/>
+        <Setter Property="WidthRequest" Value="100"/>
+        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="BorderColor" Value="Black"/>
+        <Setter Property="BorderWidth" Value="1"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="StandardButtonLarge">
+        <Setter Property="BackgroundColor" Value="Orange"/>
+        <Setter Property="WidthRequest" Value="150"/>
+        <Setter Property="HeightRequest" Value="50"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="BorderColor" Value="Black"/>
+        <Setter Property="BorderWidth" Value="1"/>
+    </Style>
+
+    <Style TargetType="Frame" x:Key="HeaderFrame">
+        <Setter Property="BackgroundColor" Value="Black"/>
+        <Setter Property="BorderColor" Value="Orange"/>
+        <Setter Property="CornerRadius" Value="0"/>
+        <Setter Property="Padding" Value="5"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="HeaderLable">
+        <Setter Property="TextColor" Value="Orange"/>
+        <Setter Property="FontSize" Value="Title"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
     </Style>
 
 </ResourceDictionary>
