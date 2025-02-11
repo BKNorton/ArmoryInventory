@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ArmoryInventory.App.ViewModels"
+             x:DataType="vm:ItemViewModel"
+             x:Class="ArmoryInventory.App.Views.AddCheckoutPage"
+             Title="Checkout">
+
+    <Grid>
+        <HorizontalStackLayout>
+            <VerticalStackLayout>
+                <Frame
+                    Style="{StaticResource HeaderFrame}">
+
+                    <Label
+                        Style="{StaticResource HeaderLable}"
+                        Text="Type">
+                        
+                    </Label>
+                </Frame>
+
+                <Frame>
+                    <Label
+                        Text="{Binding Item.ItemType}">
+                        
+                    </Label>
+                </Frame>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Frame
+                    Style="{StaticResource HeaderFrame}">
+
+                    <Label
+                        Style="{StaticResource HeaderLable}"
+                        Text="Serial Number">
+                        
+                    </Label>
+                </Frame>
+
+                <Frame>
+                    <Label
+                        Text="{Binding Item.SerialNumber}">
+
+                    </Label>
+                </Frame>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

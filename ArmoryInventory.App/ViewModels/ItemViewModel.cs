@@ -141,13 +141,18 @@ namespace ArmoryInventory.App.ViewModels
             missCapButtonIcon = string.Empty;
         }
 
+        public async Task LoadItemAsync(string itemId)
+        {
+
+        }
+
         /// <summary>
         /// itemId sent from the view to this viewModel uses the injected repository to grab the item and load it into the view model, so that any page using this view model 
         /// can display its information.
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public async Task LoadItemAsync(string itemId)
+        public async Task LoadItemWithCheckoutsAsync(string itemId)
         {
             //Verification
             if (Item.SerialNumber != null) Item = new Item();
@@ -161,7 +166,7 @@ namespace ArmoryInventory.App.ViewModels
             {
                 for ( int i = 0; i < checkouts.Count; i++)
                 {
-                    CheckoutHistory.Add(checkouts[i]);
+                    CheckoutHistory.Add(checkouts[i]); 
                 }
             }
 
