@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:ArmoryInventory.App.ViewModels"
+             x:Class="ArmoryInventory.App.Views.Popups.AddDefectPopup"
+             x:DataType="vm:AddDefectPopupViewModel"
+             CanBeDismissedByTappingOutsideOfPopup="False">
+    <VerticalStackLayout
+        WidthRequest="400"
+        HeightRequest="175"
+        AnchorX="25"
+        AnchorY="25"
+        BackgroundColor="Transparent">
+        <Frame
+            WidthRequest="400"
+            HeightRequest="175"
+            BackgroundColor="LightGray"
+            BorderColor="Black">
+            <VerticalStackLayout
+                Spacing="10">
+                <Label 
+                    Text="Add Defect"/>
+                <Entry
+                    Placeholder="Defect"
+                    Text="{Binding Defect}"
+                    BackgroundColor="White"></Entry>
+                <HorizontalStackLayout
+                    Spacing="10"
+                    HorizontalOptions="End">
+                    <Button
+                        Style="{StaticResource StandardButton}"
+                        Command="{Binding ClosePopupCommand}"
+                        Text="Cancel"></Button>
+                    <Button
+                        Style="{StaticResource StandardButton}"
+                        Command="{Binding AddDefectCommand}"
+                        Text="Add"></Button>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</toolkit:Popup>

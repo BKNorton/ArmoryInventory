@@ -2,49 +2,344 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:ArmoryInventory.App.ViewModels"
-             x:DataType="vm:ItemViewModel"
+             x:DataType="vm:AddCheckoutViewModel"
              x:Class="ArmoryInventory.App.Views.AddCheckoutPage"
              Title="Checkout">
 
-    <Grid>
-        <HorizontalStackLayout>
-            <VerticalStackLayout>
+    <Grid
+        RowDefinitions="auto,*"
+        ColumnDefinitions="*,*">
+
+        <!--Background Image-->
+        <Image
+            Source="antenna_pic.png"
+            Aspect="AspectFill"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2">
+        </Image>
+
+        <!--Top Page Details-->
+        <StackLayout
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Margin="25">
+
+            <HorizontalStackLayout
+                Spacing="40"
+                Margin="25">
+
+                <VerticalStackLayout
+                    VerticalOptions="Center">
+
+                    <VerticalStackLayout>
+
+                        <Frame
+                            Style="{StaticResource HeaderFrame}">
+
+                            <Label
+                                Style="{StaticResource HeaderLable}"
+                                Text="Type">
+                            </Label>
+                        </Frame>
+
+                        <Frame
+                            CornerRadius="0"
+                            BorderColor="Black"
+                            Padding="10">
+                            <Label
+                                Text="{Binding Item.ItemType}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            </Label>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+
+                        <Frame
+                            Style="{StaticResource HeaderFrame}">
+
+                            <Label
+                                Style="{StaticResource HeaderLable}"
+                                Text="Serial Number">
+                            </Label>
+                        </Frame>
+
+                        <Frame
+                            CornerRadius="0"
+                            BorderColor="Black"
+                            Padding="10">
+                            <Label
+                                Text="{Binding Item.SerialNumber}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center">
+                            </Label>
+                        </Frame>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+
+                <VerticalStackLayout>
+                    <Frame
+                        HeightRequest="60"
+                        HorizontalOptions="Start"
+                        BackgroundColor="LightGray"
+                        BorderColor="Black"
+                        Padding="2"
+                        CornerRadius="0">
+
+                        <HorizontalStackLayout
+                            Spacing="10"
+                            Padding="5">
+
+                            <Label
+                                Padding="10,0,0,0"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End"
+                                Text="Checked out to:"
+                                WidthRequest="100">
+
+                            </Label>
+
+                            <Entry
+                                Background="White"
+                                VerticalOptions="Center"
+                                WidthRequest="400"
+                                MaxLength="42"
+                                Placeholder="Required">
+                            </Entry>
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="LightGray"
+                        BorderColor="Black"
+                        Padding="2"
+                        VerticalOptions="Start"
+                        CornerRadius="0">
+
+                        <HorizontalStackLayout
+                            Spacing="10"
+                            Padding="5">
+                            <Label
+                                Padding="10,0,0,0"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End"
+                                Text="Reason:"
+                                WidthRequest="100">
+                            </Label>
+
+                            <Editor
+                                Background="White"
+                                VerticalOptions="Center"
+                                WidthRequest="400"
+                                HeightRequest="100"
+                                Placeholder="Required">
+                            </Editor>
+
+                        </HorizontalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Spacing="10"
+                    VerticalOptions="Center">
+                    <Button
+                        Style="{StaticResource StandardButton}"
+                        Text="Checkout">
+                    </Button>
+
+                    <Button
+                        Style="{StaticResource StandardButton}"
+                        Command="{Binding GoToMainPageCommand}"
+                        Text="Cancel">
+                    </Button>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </StackLayout>
+
+        <!--Left Panel-->
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            ColumnDefinitions="2*,*"
+            RowDefinitions="*"
+            HorizontalOptions="Center"
+            Padding="25"
+            MaximumHeightRequest="630"
+            Margin="10">
+
+            <StackLayout
+                Grid.Column="0"
+                Grid.Row="0"
+                MaximumHeightRequest="520"
+                
+                HorizontalOptions="Center"
+                VerticalOptions="Start">
+
                 <Frame
                     Style="{StaticResource HeaderFrame}">
 
                     <Label
                         Style="{StaticResource HeaderLable}"
-                        Text="Type">
-                        
+                        Text="Item Defects">
                     </Label>
                 </Frame>
 
-                <Frame>
-                    <Label
-                        Text="{Binding Item.ItemType}">
-                        
-                    </Label>
+                <Frame
+                    VerticalOptions="FillAndExpand"
+                    BorderColor="Black"
+                    CornerRadius="0"
+                    Padding="0">
+                    
+                    <CollectionView
+                        ItemsSource="{Binding ItemDefectsCollection}"
+                        SelectionMode="Single"
+                        BackgroundColor="White"
+                        SelectedItem="{Binding SelectedDefect}">
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+
+                                    <!--Item State Settings-->
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal" />
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Grey" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+
+                                    <StackLayout
+                                        HeightRequest="50">
+
+                                        <Label
+                                            VerticalOptions="Center"
+                                            Margin="15"
+                                            Text="{Binding .}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Frame>
+            </StackLayout>
+
+            <VerticalStackLayout
+                Grid.Column="1"
+                Spacing="10"
+                HorizontalOptions="Start"
+                Margin="10,50,0,0">
+                
+                <Button
+                    Style="{StaticResource StandardButton}"
+                    Command="{Binding AddDefectCommand}"
+                    Text="Add">
+                    
+                </Button>
+
+                <Button
+                    Style="{StaticResource StandardButton}"
+                    Command="{Binding RemoveDefectCommand}"
+                    Text="Remove">
+                </Button>
             </VerticalStackLayout>
+        </Grid>
 
-            <VerticalStackLayout>
+        <!--Right Panel-->
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            ColumnDefinitions="2*,*"
+            RowDefinitions="*"
+            HorizontalOptions="Center"
+            Padding="25"
+            MaximumHeightRequest="630"
+            Margin="10">
+
+            <StackLayout
+                Grid.Column="0"
+                Grid.Row="0"
+                MaximumHeightRequest="520"
+               
+                HorizontalOptions="Center"
+                VerticalOptions="Start">
+
                 <Frame
                     Style="{StaticResource HeaderFrame}">
 
                     <Label
                         Style="{StaticResource HeaderLable}"
-                        Text="Serial Number">
-                        
+                        Text="Missing Components">
                     </Label>
                 </Frame>
 
-                <Frame>
-                    <Label
-                        Text="{Binding Item.SerialNumber}">
+                <Frame
+                    VerticalOptions="FillAndExpand"
+                    BorderColor="Black"
+                    CornerRadius="0"
+                    Padding="0">
 
-                    </Label>
+                    <CollectionView
+                        ItemsSource="{Binding ItemMissingComponentsCollection}"
+                        SelectionMode="Single"
+                        BackgroundColor="White"
+                        SelectedItem="{Binding SelectedMissingComp}">
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+
+                                    <!--Item State Settings-->
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal" />
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Red" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+
+                                    <StackLayout
+                                HeightRequest="50">
+
+                                        <Label
+                                    VerticalOptions="Center"
+                                    Margin="15"
+                                    Text="{Binding .}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Frame>
+            </StackLayout>
+
+            <VerticalStackLayout
+                Grid.Column="1"
+                Spacing="10"
+                HorizontalOptions="Start"
+                Margin="10,50,0,0">
+                
+                <Button
+                    Style="{StaticResource StandardButton}"
+                    Text="Add">
+                </Button>
+
+                <Button
+                    Style="{StaticResource StandardButton}"
+                    Command="{Binding RemoveMissComponentCommand}"
+                    Text="Remove">
+                </Button>
             </VerticalStackLayout>
-        </HorizontalStackLayout>
+        </Grid>
     </Grid>
 </ContentPage>

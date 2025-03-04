@@ -22,12 +22,23 @@ namespace ArmoryInventory.Data.Repositories
             return Task.CompletedTask;
         }
 
+        public Task<Item> GetItemByIdAsync(string id)
+        {
+            var item = _context.Items.Where(x => x.Id.ToString().ToLower() == id).FirstOrDefault();
+            if (item != null)
+            {
+                return Task.FromResult(item);
+            }
+            item = new Item();
+            return Task.FromResult(item);
+        }
+
         /// <summary>
         /// This includes Item CheckoutHistory
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<Item> GetItemByIdAsync(string id)
+        public Task<Item> GetItemWithCheckoutsByIdAsync(string id)
         {
             var item = _context.Items.Where(x => x.Id.ToString().ToLower() == id).Include(i => i.CheckoutHistory).FirstOrDefault();
                   if (item != null)
@@ -77,16 +88,17 @@ namespace ArmoryInventory.Data.Repositories
 
         public async Task<List<Item>> GetItemsBySearchAsync(string filterText)
         {
+            var itemsList = await _context.Items.ToListAsync();
             if (string.IsNullOrWhiteSpace(filterText))
             {
-                var itemsList = await _context.Items.ToListAsync();
+                
                 if (itemsList == null)
                     return new List<Item>();
                 else return itemsList;
             }
 
-            var items = await _context.Items.Where(x => !string.IsNullOrWhiteSpace(x.SerialNumber)
-                && x.SerialNumber.StartsWith(filterText, StringComparison.OrdinalIgnoreCase)).ToListAsync();
+            var items = itemsList.Where(x => !string.IsNullOrWhiteSpace(x.SerialNumber)
+                && x.SerialNumber.StartsWith(filterText, StringComparison.OrdinalIgnoreCase)).ToList();
 
             if (items is null || items.Count <= 0)
             {

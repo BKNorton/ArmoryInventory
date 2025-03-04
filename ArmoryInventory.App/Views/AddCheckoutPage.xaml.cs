@@ -1,11 +1,13 @@
 using ArmoryInventory.App.ViewModels;
+using ArmoryInventory.App.Views.Popups;
+using CommunityToolkit.Maui.Views;
 
 namespace ArmoryInventory.App.Views;
 
 [QueryProperty(nameof(ItemId), "Id")]
 public partial class AddCheckoutPage : ContentPage
 {
-    private readonly ItemViewModel itemViewModel;
+    private readonly AddCheckoutViewModel addCheckoutViewModel;
 
     public string ItemId
     {
@@ -13,15 +15,19 @@ public partial class AddCheckoutPage : ContentPage
         {
             if (!string.IsNullOrEmpty(value))
             {
-                //LoadItem(value);
+                LoadPage(value);
             }
         }
     }
 
-    public AddCheckoutPage(ItemViewModel itemViewModel)
+    public AddCheckoutPage(AddCheckoutViewModel chekoutViewModel)
 	{
 		InitializeComponent();
-        this.itemViewModel = itemViewModel;
-        this.BindingContext = itemViewModel;
+        this.BindingContext = this.addCheckoutViewModel = chekoutViewModel;
+    }
+
+    private async void LoadPage(string itemId)
+    {
+        await this.addCheckoutViewModel.LoadPageAsync(itemId);
     }
 }

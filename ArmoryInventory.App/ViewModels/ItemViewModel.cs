@@ -141,11 +141,6 @@ namespace ArmoryInventory.App.ViewModels
             missCapButtonIcon = string.Empty;
         }
 
-        public async Task LoadItemAsync(string itemId)
-        {
-
-        }
-
         /// <summary>
         /// itemId sent from the view to this viewModel uses the injected repository to grab the item and load it into the view model, so that any page using this view model 
         /// can display its information.
@@ -157,11 +152,11 @@ namespace ArmoryInventory.App.ViewModels
             //Verification
             if (Item.SerialNumber != null) Item = new Item();
             if (string.IsNullOrWhiteSpace(itemId)) return;
-            Item = await repository.GetItemByIdAsync(itemId);
+            Item = await repository.GetItemWithCheckoutsByIdAsync(itemId);
             if (Item is null || Item.Id == Guid.Empty) return;
 
             //Load properties
-            var checkouts = Item.CheckoutHistory?.ToList();
+            var checkouts = Item.CheckoutHistory;
             if (checkouts != null && checkouts.Count > 0)
             {
                 for ( int i = 0; i < checkouts.Count; i++)
@@ -238,7 +233,7 @@ namespace ArmoryInventory.App.ViewModels
 
         private async void RefreshDetails()
         {
-            var item = await repository.GetItemByIdAsync(Item.Id.ToString());
+            var item = await repository.GetItemWithCheckoutsByIdAsync(Item.Id.ToString());
             var defString = string.Empty;
             Defects = string.Empty;
             if (item.Defects != null)
@@ -298,6 +293,7 @@ namespace ArmoryInventory.App.ViewModels
             RefreshDetails(); 
         }
 
+        //Potential to move UI logic out of the view model and into code behind for view
         [RelayCommand]
         public async Task MissonCapableButtonPressed()
         {

@@ -182,5 +182,13 @@ namespace ArmoryInventory.App.ViewModels
                 await ReFreshItemsAsync();
             }
         }
+
+        [RelayCommand]
+        public async Task GoToAddCheckoutPageAsync()
+        {
+            if (selectedItem is null) return;
+            if (selectedItem.Id == Guid.Empty) return;
+            await Shell.Current.GoToAsync($"{nameof(AddCheckoutPage)}?Id={selectedItem.Id}");
+        }
     }
 }

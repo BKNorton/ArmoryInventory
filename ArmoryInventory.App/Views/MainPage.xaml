@@ -92,8 +92,8 @@
         <!--Table Header-->
         <StackLayout
             Grid.Row="1"
-            HorizontalOptions="Start"
-            VerticalOptions="Center"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start"
             Padding="10">
 
             <Grid
@@ -166,14 +166,13 @@
                 SelectedItem="{Binding SelectedItem}"   
                 VerticalOptions="FillAndExpand"
                 SelectionMode="Single"
-                BackgroundColor="Black">
+                BackgroundColor="White">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="m:Item">
                         <Grid
                             RowDefinitions="*"
-                            ColumnDefinitions="*,*,*,*,*"
-                            BackgroundColor="White">
+                            ColumnDefinitions="*,*,*,*,*">
 
                             <!--Item State Settings-->
                             <VisualStateManager.VisualStateGroups>
@@ -296,12 +295,13 @@
 
             <Button
                 Style="{StaticResource StandardButtonLarge}"
+                Command="{Binding GoToAddCheckoutPageCommand}"
                 Text="Checkout">
             </Button>
 
             <Button
                 Style="{StaticResource StandardButtonLarge}"
-                Text="Create Mission">
+                Text="Check in">
             </Button>
         </HorizontalStackLayout>
     </Grid>

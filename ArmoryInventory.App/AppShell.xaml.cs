@@ -12,6 +12,7 @@ namespace ArmoryInventory.App
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(AddItemPage), typeof(AddItemPage));
             Routing.RegisterRoute(nameof(ViewItemPage), typeof(ViewItemPage));
+            Routing.RegisterRoute(nameof(AddCheckoutPage), typeof(AddCheckoutPage));
         }
 
         protected override void OnAppearing()
