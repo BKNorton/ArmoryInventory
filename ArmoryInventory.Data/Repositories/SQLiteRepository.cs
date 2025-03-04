@@ -137,17 +137,11 @@ namespace ArmoryInventory.Data.Repositories
         }
 
         //Checkout Functions
-        //Currently not needed
-        //public async Task<List<Checkout>> GetCheckoutHistoryAsync(string Id)
-        //{
-        //    var checkoutHistory = await _context.Checkouts.Where(x => x.ItemId.ToString().ToLower() == Id.ToLower()).OrderByDescending(x => x.DateCheckedOut).ToListAsync();
-
-        //    if (checkoutHistory != null)
-        //    {
-        //        return checkoutHistory;
-        //    }
-        //    checkoutHistory = new List<Checkout>();
-        //    return checkoutHistory;
-        //}
+        public async Task<Task> AddCheckoutAsync(Checkout checkout)
+        {
+            await _context.Checkouts.AddAsync(checkout);
+            _context.SaveChanges();
+            return Task.CompletedTask;
+        }
     }
 }

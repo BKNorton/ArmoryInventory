@@ -11,27 +11,27 @@ using System.Threading.Tasks;
 
 namespace ArmoryInventory.App.ViewModels
 {
-    public partial class AddDefectPopupViewModel : ObservableObject 
+    public partial class AddMissingComponentPopupViewModel : ObservableObject
     {
         private readonly IRepository repository;
         private readonly IPopupService popupService;
 
         public Item Item;
 
-        private string defect;
-        public string Defect
+        private string missingComp;
+        public string MissingComp
         {
-            get => defect;
+            get => missingComp;
             set
             {
-                SetProperty(ref defect, value);
+                SetProperty(ref missingComp, value);
             }
         }
 
-        public AddDefectPopupViewModel(IRepository repository, IPopupService popupService)
+        public AddMissingComponentPopupViewModel(IRepository repository, IPopupService popupService)
         {
             Item = new Item();
-            defect = string.Empty;
+            missingComp = string.Empty;
             this.repository = repository;
             this.popupService = popupService;
         }
@@ -43,10 +43,10 @@ namespace ArmoryInventory.App.ViewModels
         }
 
         [RelayCommand]
-        public async Task AddDefect()
+        public async Task AddMissingComp()
         {
-            if (Item.Defects is null) Item.Defects = []; //this should probably be moved
-            Item.Defects.Add(defect);
+            if (Item.MissingComponents is null) Item.MissingComponents = [];
+            Item.MissingComponents.Add(missingComp);
             await repository.UpdateItemAsync(Item.Id, Item);
             await popupService.ClosePopupAsync();
         }

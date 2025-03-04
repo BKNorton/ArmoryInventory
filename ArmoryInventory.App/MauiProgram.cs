@@ -31,6 +31,7 @@ namespace ArmoryInventory.App
             builder.Services.AddTransient<AddCheckoutPage>();
             //Popups
             builder.Services.AddTransientPopup<AddDefectPopup, AddDefectPopupViewModel>();
+            builder.Services.AddTransientPopup<AddMissingComponentPopup, AddMissingComponentPopupViewModel>();
             //View Models
             builder.Services.AddTransient<MainViewModel>();
             builder.Services.AddTransient<ItemViewModel>();

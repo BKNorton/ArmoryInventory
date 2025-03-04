@@ -108,6 +108,7 @@
                                 VerticalOptions="Center"
                                 WidthRequest="400"
                                 MaxLength="42"
+                                Text="{Binding CheckoutTo}"
                                 Placeholder="Required">
                             </Entry>
                         </HorizontalStackLayout>
@@ -136,6 +137,7 @@
                                 VerticalOptions="Center"
                                 WidthRequest="400"
                                 HeightRequest="100"
+                                Text="{Binding CheckoutReason}"
                                 Placeholder="Required">
                             </Editor>
 
@@ -148,6 +150,7 @@
                     VerticalOptions="Center">
                     <Button
                         Style="{StaticResource StandardButton}"
+                        Command="{Binding CheckoutCommand}"
                         Text="Checkout">
                     </Button>
 
@@ -175,7 +178,7 @@
                 Grid.Column="0"
                 Grid.Row="0"
                 MaximumHeightRequest="520"
-                
+                MinimumWidthRequest="300"
                 HorizontalOptions="Center"
                 VerticalOptions="Start">
 
@@ -190,6 +193,7 @@
 
                 <Frame
                     VerticalOptions="FillAndExpand"
+                    MinimumHeightRequest="100"
                     BorderColor="Black"
                     CornerRadius="0"
                     Padding="0">
@@ -267,7 +271,6 @@
                 Grid.Column="0"
                 Grid.Row="0"
                 MaximumHeightRequest="520"
-               
                 HorizontalOptions="Center"
                 VerticalOptions="Start">
 
@@ -309,12 +312,12 @@
                                     </VisualStateManager.VisualStateGroups>
 
                                     <StackLayout
-                                HeightRequest="50">
+                                        HeightRequest="50">
 
                                         <Label
-                                    VerticalOptions="Center"
-                                    Margin="15"
-                                    Text="{Binding .}"/>
+                                            VerticalOptions="Center"
+                                            Margin="15"
+                                            Text="{Binding .}"/>
                                     </StackLayout>
                                 </StackLayout>
                             </DataTemplate>
@@ -331,6 +334,7 @@
                 
                 <Button
                     Style="{StaticResource StandardButton}"
+                    Command="{Binding AddMissingCompCommand}"
                     Text="Add">
                 </Button>
 

@@ -158,6 +158,8 @@ namespace ArmoryInventory.App.ViewModels
             }
         }
 
+        // Commands
+
         [RelayCommand]
         public async Task GoToAddItemPageAsync()
         {
@@ -187,6 +189,7 @@ namespace ArmoryInventory.App.ViewModels
         public async Task GoToAddCheckoutPageAsync()
         {
             if (selectedItem is null) return;
+            if (selectedItem.CheckedOut == TrueOrFalse.True) return;
             if (selectedItem.Id == Guid.Empty) return;
             await Shell.Current.GoToAsync($"{nameof(AddCheckoutPage)}?Id={selectedItem.Id}");
         }

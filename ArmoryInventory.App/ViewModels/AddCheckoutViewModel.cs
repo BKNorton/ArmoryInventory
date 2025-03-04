@@ -1,16 +1,10 @@
 ﻿using ArmoryInventory.App.Views;
-using ArmoryInventory.App.Views.Popups;
 using ArmoryInventory.Data.Interfaces;
 using ArmoryInventory.Domain.Models;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArmoryInventory.App.ViewModels
 {
@@ -116,11 +110,8 @@ namespace ArmoryInventory.App.ViewModels
             }
         }
 
-        public void ReFreshItemsAsync()
-        {
-            ItemDefectsCollection.Clear();
-            ItemMissingComponentsCollection.Clear();
-        }
+
+        //Commands
 
         [RelayCommand]
         public async Task GoToMainPageAsync()
@@ -153,7 +144,32 @@ namespace ArmoryInventory.App.ViewModels
         public async Task AddDefect()
         {
             var obj = await this.popupService.ShowPopupAsync<AddDefectPopupViewModel>(onPresenting: viewModel => viewModel.Item = this.item);
-            SelectedDefect = string.Empty;
+            //SelectedDefect = string.Empty;
+            await LoadPageAsync(Item.Id.ToString());
+        }
+
+        [RelayCommand]
+        public async Task AddMissingComp()
+        {
+            var obj = await this.popupService.ShowPopupAsync<AddMissingComponentPopupViewModel>(onPresenting: viewModel => viewModel.Item = this.item);
+            //SelectedDefect = string.Empty;
+            await LoadPageAsync(Item.Id.ToString());
+        }
+
+        [RelayCommand]
+        public async Task Checkout()
+        {
+            var checkout = new Checkout()
+            {
+                CheckedOutTo = this.CheckoutTo,
+                DefectsBefore = ItemDefectsCollection.ToList(),
+                DateCheckedOut = new DateOnly(),
+                ItemId = this.item.Id
+            };
+            checkout.DateCheckedOut = DateOnly.FromDateTime(DateTime.Now);
+            await repository.AddCheckoutAsync(checkout);
+            this.Item.CheckedOut = Domain.Enums.TrueOrFalse.True;
+            await repository.UpdateItemAsync(item.Id, item);
             await LoadPageAsync(Item.Id.ToString());
         }
     }
